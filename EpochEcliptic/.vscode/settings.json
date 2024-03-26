@@ -56,6 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "My project.sln",
+    "dotnet.defaultSolution": "EpochEcliptic.sln",
     "dotnetAcquisitionExtension.installTimeoutValue": 1800
 }
