@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb77fde39a7ff8847ae5400b2805b033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
   baseStats:
     maxHealth: 15
     reloadHaste:
