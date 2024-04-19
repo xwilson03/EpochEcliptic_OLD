@@ -8,7 +8,7 @@ public class GoblinBoss : Boss {
 
     bool busy = false;
 
-    [SerializeField] float attack1Chance = 0.25f;
+    [SerializeField] float attackChance = 0.25f;
     [SerializeField] float timeBetweenVolleys = 2f;
     [SerializeField] float chaseChance = 0.5f;
     [SerializeField] float chaseDuration = 3f;
@@ -18,7 +18,7 @@ public class GoblinBoss : Boss {
         if (busy) return;
         if (Refs.player == null) return;
         
-        if (Random.value <= attack1Chance) StartCoroutine(Attack1(timeBetweenVolleys));
+        if (Random.value <= attackChance) StartCoroutine(Attack(timeBetweenVolleys));
         else if (Random.value <= chaseChance) StartCoroutine(ChasePlayer(chaseDuration));
     }
 
@@ -40,30 +40,16 @@ public class GoblinBoss : Boss {
         StartCoroutine(StartCooldown(actionCooldown));
     }
 
-    IEnumerator Attack1(float timeBetweenVolleys) {
+    IEnumerator Attack(float timeBetweenVolleys) {
         busy = true;
 
         for (int i = 0; i < 4; i++) {
-            ShootPlus();
+            ShootRing(8, 0, true);
             yield return new WaitForSeconds(timeBetweenVolleys);
-            ShootX();
+            ShootRing(8, 27.5f, true);
             yield return new WaitForSeconds(timeBetweenVolleys);
         }
 
         StartCoroutine(StartCooldown(actionCooldown));
-    }
-
-    void ShootPlus() {
-        Shoot(transform.position + Vector3.up);
-        Shoot(transform.position + Vector3.left);
-        Shoot(transform.position + Vector3.down);
-        Shoot(transform.position + Vector3.right);
-    }
-
-    void ShootX() {
-        Shoot(transform.position + (Vector3.up   + Vector3.left ).normalized);
-        Shoot(transform.position + (Vector3.up   + Vector3.right).normalized);
-        Shoot(transform.position + (Vector3.down + Vector3.left ).normalized);
-        Shoot(transform.position + (Vector3.down + Vector3.right).normalized);
     }
 }

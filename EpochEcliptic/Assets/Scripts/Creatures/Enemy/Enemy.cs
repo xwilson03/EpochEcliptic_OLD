@@ -17,6 +17,20 @@ public class Enemy : Creature {
         parentRoom.RegisterEnemy(this);
     }
 
+    protected void ShootRing(int count, float angle, bool force = false) {
+        if (!force && !canFire) return;
+
+        Quaternion spacing = Quaternion.Euler(0, 0, 360f / count);
+        Vector3 trajectory = Quaternion.Euler(0, 0, angle) * Vector3.up;
+
+        for (int i = 0; i < count; i++) {
+            SpawnBullet(trajectory);
+            trajectory = spacing * trajectory;
+        }
+
+        Reload();
+    }
+
     protected override void Die() {
         parentRoom.RemoveEnemy(this);
         base.Die();
