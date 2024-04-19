@@ -52,7 +52,7 @@ public abstract class Creature : MonoBehaviour {
         SpawnBullet(trajectory);
 
         // Start reload timer
-        StartCoroutine(Reload());
+        Reload();
     }
 
     protected void SpawnBullet(Vector3 trajectory) {
@@ -67,7 +67,11 @@ public abstract class Creature : MonoBehaviour {
             );
     }
 
-    IEnumerator Reload() {
+    protected void Reload() {
+        StartCoroutine(Reload_());
+    }
+
+    IEnumerator Reload_() {
         canFire = false;
 
         float realReloadHaste = RealReloadHaste();
