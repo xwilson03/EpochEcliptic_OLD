@@ -50,13 +50,16 @@ public abstract class Creature : MonoBehaviour {
         // Calculate bullet travel direction
         Vector3 trajectory = target - transform.position;
 
-        float realBulletDamage = RealBulletDamage();
-        float realBulletSpeed = RealBulletSpeed();
-        float realBulletDuration = RealBulletDuration();
-
         // Instantiate bullet and set attributes
-        GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
-        newBullet.GetComponent<Bullet>().Initialize(trajectory.normalized * realBulletSpeed, realBulletDuration, (int) Math.Ceiling(realBulletDamage), gameObject.tag, size + spacing);
+        Instantiate(bullet, transform.position, transform.rotation)
+            .GetComponent<Bullet>()
+            .Initialize(
+                trajectory.normalized * RealBulletSpeed(),
+                RealBulletDuration(),
+                (int) Math.Ceiling(RealBulletDamage()),
+                gameObject.tag,
+                size + spacing
+            );
 
         // Start reload timer
         StartCoroutine(Reload());
