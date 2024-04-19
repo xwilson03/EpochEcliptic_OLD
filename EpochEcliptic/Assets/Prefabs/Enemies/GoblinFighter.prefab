@@ -189,11 +189,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2629144005805195690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d25719801b48304cab58066e8cefe58, type: 3}
+  m_Script: {fileID: 11500000, guid: 6894c9ed18a3b6640a75aed70423056b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
-  rb: {fileID: 4828162551115212759}
   baseStats:
     maxHealth: 4
     reloadHaste:
