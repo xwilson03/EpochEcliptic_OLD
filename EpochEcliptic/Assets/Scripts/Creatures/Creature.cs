@@ -9,7 +9,7 @@ public abstract class Creature : MonoBehaviour {
 
     [Header("References")]
     [SerializeField] protected GameObject bullet;
-    [SerializeField] protected Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
     [Header("Stats")]
     [SerializeField] protected StatLine baseStats;
@@ -24,10 +24,10 @@ public abstract class Creature : MonoBehaviour {
 
     protected virtual void Awake() {
         Util.CheckReference(name, "Bullet Prefab", bullet);
-        Util.CheckReference(name, "Rigidbody", rb);
         if (baseStats.movementSpeed.flat == 0) Util.Warning(name, "Speed is zero.");
 
         // Movement and Physics
+        if (!TryGetComponent(out rb)) Util.Error(name, "Failed to acquire reference to RigidBody.");
         rb.drag         = 8.0f;
         rb.gravityScale = 0.0f;
     }
