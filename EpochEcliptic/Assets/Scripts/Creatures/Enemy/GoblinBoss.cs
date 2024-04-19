@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GoblinBoss : Enemy {
+public class GoblinBoss : Boss {
 
     new public static float size    = 1.4f;
     new public static float spacing = 0.2f;
@@ -59,16 +59,16 @@ public class GoblinBoss : Enemy {
     }
 
     void ShootPlus() {
-        Shoot(transform.position + Vector3.up);    canFire = true;
-        Shoot(transform.position + Vector3.left);  canFire = true;
-        Shoot(transform.position + Vector3.down);  canFire = true;
-        Shoot(transform.position + Vector3.right); canFire = true;
+        Shoot(transform.position + Vector3.up);
+        Shoot(transform.position + Vector3.left);
+        Shoot(transform.position + Vector3.down);
+        Shoot(transform.position + Vector3.right);
     }
 
     void ShootX() {
-        Shoot(transform.position + (Vector3.up   + Vector3.left ).normalized); canFire = true;
-        Shoot(transform.position + (Vector3.up   + Vector3.right).normalized); canFire = true;
-        Shoot(transform.position + (Vector3.down + Vector3.left ).normalized); canFire = true;
-        Shoot(transform.position + (Vector3.down + Vector3.right).normalized); canFire = true;
+        Shoot(transform.position + (Vector3.up   + Vector3.left ).normalized);
+        Shoot(transform.position + (Vector3.up   + Vector3.right).normalized);
+        Shoot(transform.position + (Vector3.down + Vector3.left ).normalized);
+        Shoot(transform.position + (Vector3.down + Vector3.right).normalized);
     }
 }

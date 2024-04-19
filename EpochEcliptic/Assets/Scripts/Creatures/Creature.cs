@@ -65,7 +65,7 @@ public abstract class Creature : MonoBehaviour {
         StartCoroutine(Reload());
     }
 
-    IEnumerator Reload() {
+    protected virtual IEnumerator Reload() {
         canFire = false;
 
         float realReloadHaste = RealReloadHaste();
