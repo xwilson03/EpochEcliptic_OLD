@@ -22,11 +22,6 @@ public class GoblinBoss : Boss {
         else if (Random.value <= chaseChance) StartCoroutine(ChasePlayer(chaseDuration));
     }
 
-    protected override void Die() {
-        transform.parent.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
-        base.Die();
-    }
-
     IEnumerator StartCooldown(float duration) {
         yield return new WaitForSeconds(duration);
         busy = false;
