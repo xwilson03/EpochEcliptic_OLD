@@ -1,18 +1,35 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
+public class Globals {
+    
+    public static Biome biome = Biome.Forest;
+    public static int level = 1;
+    public static int biomeLength = 3;
+    public static float difficulty = 0f;
+    public static float difficultyPerStage = 0.1f;
 
-public class Globals : MonoBehaviour
-{
-    public InputController inputController;
-    public CameraController cameraController;
-    public FadeController fadeController;
+    public static StatLine playerMods;
+    public static int playerHealth;
 
-    public PauseMenu pauseMenu;
-    public HealthOverlay healthOverlay;
-    public AbilityOverlay abilityOverlay;
-    public EventSystem eventSystem;
+    public static string nextScene;
 
-    public Player player;
+    public static void PrepareNextFloor() {
+        playerMods = Refs.player.mods;
+        playerHealth = Refs.player.health;
+        level++;
+        difficulty += difficultyPerStage;
 
-    public GameObject[,] rooms;
+        if (level > biomeLength) {
+            biome++;
+            level = 1;
+        }
+
+        //TODO: import mountain assets and remove this
+        if (biome == Biome.Mountain) biome++;
+
+        if (biome == Biome.None) {
+            biome = Biome.Forest;
+            nextScene = "MainMenu";
+        }
+        
+        else nextScene = "Game";
+    }
 }

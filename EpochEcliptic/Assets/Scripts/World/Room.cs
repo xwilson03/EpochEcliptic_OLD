@@ -1,51 +1,118 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Room : MonoBehaviour
-{
+public class Room : MonoBehaviour {
 
     public static Vector2 size    = new (15, 9);
-    public static Vector2 spacing = new (4f, 2f);
+    public static Vector2 spacing = new (6f, 6f);
 
     public int x, y;
-    public int enemies = 0;
+    int enemies = 0;
 
-    [SerializeField] private GameObject[] doors;
-    [SerializeField] private GameObject[] partWalls;
-    [SerializeField] private GameObject[] fullWalls;
-    public bool[] doorStatuses;
+    [SerializeField] GameObject root;
+    [SerializeField] GameObject[] blockers;
+    readonly bool[] doorsExist = new bool[4];
 
-    void Start()
-    {
-        // Check serial fields
-        if (doors     == null) Debug.LogError("Room: Missing reference to Doors.");
-        if (partWalls == null) Debug.LogError("Room: Missing reference to Partial Walls.");
-        if (fullWalls == null) Debug.LogError("Room: Missing reference to Full Walls.");
+    void Awake() {
+        Util.CheckReference(name, "Room Root", root);
+        Util.CheckArray(name, "Blockers", blockers);
+
+        root.SetActive(false);
     }
 
-    public Room EnableDoors(bool[] statuses)
-    {
-        for (int segment = 0; segment < 4; segment++) {
+    public void Enter(Direction from) {
+        root.SetActive(true);
+        Refs.cameraController.MoveToXY(transform.position);
 
-            // Get segment status
-            bool status = statuses[segment];
+        float playerYDist = (size.y - Player.size - Player.spacing) / 2;
+        float playerXDist = (size.x - Player.size - Player.spacing) / 2;
 
-            // Enable segment's doors and partial walls
-            doors     [segment]        .SetActive(status);
-            partWalls [segment * 2]    .SetActive(status);
-            partWalls [segment * 2 + 1].SetActive(status);
+        Vector2 playerOffset = from switch {
+            Direction.Top   => new (0, -playerYDist),
+            Direction.Left  => new ( playerXDist, 0),
+            Direction.Down  => new (0,  playerYDist),
+            Direction.Right => new (-playerXDist, 0),
+            _ => Vector2.zero
+        };
 
-            // Disable segment's full wall
-            fullWalls[segment].SetActive(!status);
+        Refs.player.transform.position = new (
+            transform.position.x + playerOffset.x,
+            transform.position.y + playerOffset.y,
+            Refs.player.transform.position.z
+        );
+
+        // cheap way of waiting for RegisterEnemy to get called 
+        Refs.cameraController.WaitForCamera(delegate {
+            UAP_AccessibilityManager.Say(((enemies == 0) ? "No" : $"{enemies}") + " enemies.");
+            if (IsOpen()) SayDoors();
+        });
+    }
+
+    public void Exit(Direction to) {
+        if (!IsOpen()) return;
+
+        Room next = to switch {
+            Direction.Top   => Refs.rooms[y+1,x],
+            Direction.Left  => Refs.rooms[y,x-1],
+            Direction.Down  => Refs.rooms[y-1,x],
+            Direction.Right => Refs.rooms[y,x+1],
+            _ => null
+        };
+
+        if (next != null) {
+            UAP_AccessibilityManager.Say(to switch {
+                Direction.Top   => "Went Up",
+                Direction.Left  => "Went Left",
+                Direction.Down  => "Went Down",
+                Direction.Right => "Went Right",
+                _ => ""
+            });
+            next.Enter(to);
+            Refs.cameraController.WaitForCamera(delegate {
+                root.SetActive(false);
+            });
         }
-
-        return this;
     }
 
-    public Room SetXY(int x, int y)
-    {
-        this.x = x;
-        this.y = y;
+    public void RegisterEnemy(Enemy enemy) {
+        enemies++;
+        Close();
+    }
 
-        return this;
+    public void RemoveEnemy(Enemy enemy) {
+        enemies--;
+        UAP_AccessibilityManager.Say($"{enemies} left.");
+        if (enemies < 1) Open();
+    }
+
+    bool IsOpen() {
+        return enemies < 1;
+    }
+
+    void Open() {
+        SayDoors();
+    }
+
+    void Close() {
+    }
+
+    public void SetDoors(bool[] statuses) {
+        for (int i = 0; i < 4; i++) {
+            doorsExist[i] = statuses[i];
+            blockers[i].SetActive(!doorsExist[i]);
+        }
+    }
+
+    void SayDoors() {
+        List<string> doorStrings = new ();
+        if (doorsExist[0]) doorStrings.Add("Up");
+        if (doorsExist[1]) doorStrings.Add("Left");
+        if (doorsExist[2]) doorStrings.Add("Down");
+        if (doorsExist[3]) doorStrings.Add("Right");
+        string suffix = " open.";
+
+        UAP_AccessibilityManager.Say(string.Join(", ", doorStrings) + suffix);
     }
 }

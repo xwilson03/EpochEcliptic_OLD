@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class HealthOverlay : MonoBehaviour
-{
+public class HealthOverlay : MonoBehaviour {
+    
     [SerializeField] MeshFilter[] heartObjs;
     [SerializeField] GameObject[] containerObjs;
     [SerializeField] Mesh emptyHeart;
@@ -10,16 +10,22 @@ public class HealthOverlay : MonoBehaviour
     [SerializeField] Mesh threeHeart;
     [SerializeField] Mesh fourHeart;
 
-    void Start()
-    {
-        if (heartObjs.Length == 0) Debug.LogError("HealthOverlay: Missing reference to Heart GameObjects");
+    void Awake() {
+        Util.CheckArray(name, "Heart GameObjects", heartObjs);
+        Refs.healthOverlay = this;
     }
 
-    public void SetContainers(int containers)
-    {
-        if (containers < 1) {
-            Debug.LogError($"HealthOverlay: SetContainers given container count of {containers}.");
-        }
+    void Start() {
+        Refresh();
+    }
+
+    public void Refresh() {
+        RefreshContainers();
+        RefreshHealth();
+    }
+
+    void RefreshContainers() {
+        int containers = Refs.player.RealMaxHealth() / 4;
 
         foreach (var container in containerObjs) {
             if (containers > 0) {
@@ -33,11 +39,8 @@ public class HealthOverlay : MonoBehaviour
         }
     }
 
-    public void SetHealth(int health)
-    {
-        if (health < 0) {
-            health = 0;
-        }
+    void RefreshHealth() {
+        int health = Refs.player.health;
 
         foreach (var heart in heartObjs) {
             switch (health) {

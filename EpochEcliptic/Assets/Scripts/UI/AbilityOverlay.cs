@@ -1,13 +1,16 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityOverlay : MonoBehaviour
-{
+public class AbilityOverlay : MonoBehaviour {
+    
     [SerializeField] Image fullImage;
 
-    public void SetChargePercent(float percent)
-    {
+    void Awake() {
+        Util.CheckReference(name, "Overlay Image", fullImage);
+        Refs.abilityOverlay = this;
+    }
+
+    public void SetChargePercent(float percent) {
         fullImage.fillAmount = percent;
     }
 }

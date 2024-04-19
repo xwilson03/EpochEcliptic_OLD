@@ -1,8 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorPlanner : MonoBehaviour
-{
+enum Heading {
+    None  = 0,
+    Top   = 1,
+    Left  = 2,
+    Down  = 3,
+    Right = 4
+}
+
+enum RoomType {
+    Normal   = 0,
+    Start    = 1,
+    Boss     = 2,
+    Treasure = 3
+}
+
+public class FloorPlanner : MonoBehaviour {
+
     class Cell {
         public Cell(string name) {
             this.name = name;
@@ -14,54 +29,78 @@ public class FloorPlanner : MonoBehaviour
         public bool isEndRoom;
     }
 
-    enum Heading {Top, Left, Down, Right, None}
-    enum RoomType {Normal, Start, Boss, Treasure}
-
-    [SerializeField] Globals globals;
-
     [Header("Prefabs")]
-    [SerializeField] GameObject startRoom;
-    [SerializeField] GameObject bossRoom;
-    [SerializeField] GameObject treasureRoom;
-    [SerializeField] GameObject normalRoom;
-    [SerializeField] GameObject[] roomLayouts;
+    [SerializeField] GameObject roomBase;
+    [SerializeField] GameObject[] normalPatterns;
+    [SerializeField] GameObject[] bossPatterns;
+    [SerializeField] GameObject[] treasurePatterns;
+
+    [Header("Forest Meshes")]
+    [SerializeField] GameObject forestCorners;
+    [SerializeField] GameObject forestGround;
+    [SerializeField] GameObject[] forestBlockers;
+
+    [Header("Temple Meshes")]
+    [SerializeField] GameObject templeCorners;
+    [SerializeField] GameObject templeGround;
+    [SerializeField] GameObject[] templeBlockers;
+    [SerializeField] GameObject[] templeDoors;
 
     [Header("Config")]
     [SerializeField] Vector2Int floorSize;
     [SerializeField] int maxRooms = 20;
     [SerializeField] int maxNeighbors = 1;
     [SerializeField] int maxStraights = 4;
-    [SerializeField] AnimationCurve roomFailChance = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+    [SerializeField] AnimationCurve roomFailChance;
 
     Cell[,] map;
     Queue<Vector2Int> queue;
     Vector2Int startCell;
     int roomCount;
 
+    bool complete = false;
 
-    void Start()
-    {
-        // Check serial fields
-        if (startRoom == null)    Debug.LogError("FloorPlanner: Missing reference to Start Room Prefab");
-        if (bossRoom == null)     Debug.LogError("FloorPlanner: Missing reference to Boss Room Prefab");
-        if (treasureRoom == null) Debug.LogError("FloorPlanner: Missing reference to Treasure Room Prefab");
-        if (normalRoom == null)   Debug.LogError("FloorPlanner: Missing reference to Normal Room Prefab");
-        if (roomLayouts == null) Debug.LogError("FloorPlanner: Missing reference to Room Pattern Prefabs");
-        if (floorSize  == Vector2.zero) Debug.LogError("FloorPlanner: Floor Size uninitialized.");
+    void Awake() {
+        // Prefabs
+        Util.CheckReference(name, "Room Base", roomBase);
+        Util.CheckArray(name, "Normal Patterns", normalPatterns);
+        Util.CheckArray(name, "Boss Patterns", bossPatterns);
+        Util.CheckArray(name, "Treasure Patterns", treasurePatterns);
 
-        // Initialize data structures
-        map = new Cell[floorSize.y, floorSize.x];
-        globals.rooms = new GameObject[floorSize.y, floorSize.x];
-        queue = new Queue<Vector2Int>();
+        // Forest Meshes
+        Util.CheckReference(name, "Forest Corners", forestCorners);
+        Util.CheckReference(name, "Forest Ground", forestGround);
+        Util.CheckArray(name, "Forest Blockers", forestBlockers);
 
-        // Generate and instantiate map
-        GenerateMap();
-        AddSpecialRooms();
+        // Temple Meshes
+        Util.CheckReference(name, "Temple Corners", templeCorners);
+        Util.CheckReference(name, "Temple Ground", templeGround);
+        Util.CheckArray(name, "Temple Blockers", templeBlockers);
+        Util.CheckArray(name, "Temple Doors", templeDoors);
+
+        if (floorSize  == Vector2.zero) Util.Error(name, "Floor Size uninitialized.");
+    }
+
+    void Start() {   
+
+        int attempts = 10;
+        while (!complete && attempts-- > 0) {
+
+            // Initialize data structures
+            map = new Cell[floorSize.y, floorSize.x];
+            Refs.rooms = new Room[floorSize.y, floorSize.x];
+            roomCount = 0;
+            queue = new Queue<Vector2Int>();
+
+            // Generate and instantiate map
+            GenerateMap();
+            AddSpecialRooms();
+        }
+
         InstantiateMap();
     }
 
-    void GenerateMap()
-    {
+    void GenerateMap() {
         // Ensure queue is clear before beginning
         queue.Clear();
 
@@ -107,7 +146,7 @@ public class FloorPlanner : MonoBehaviour
                 // If creation attempt failed, reduce strictness
                 if (!createdRoom) {
                     strictness--;
-                    Debug.Log($"FloorPlanner: Reduced strictness to {strictness}.");
+                    // Debug.Log($"FloorPlanner: Reduced strictness to {strictness}.");
                 }
 
                 // Move on if attempt failed with lowest strictness
@@ -118,11 +157,10 @@ public class FloorPlanner : MonoBehaviour
             }
         }
 
-        Debug.Log($"FloorPlanner: Generated {roomCount} rooms.");
+        // Debug.Log($"FloorPlanner: Generated {roomCount} rooms.");
     }
 
-    bool TryCreateCell(int x, int y, Heading heading, int strictness)
-    {
+    bool TryCreateCell(int x, int y, Heading heading, int strictness) {
         /* Strictness:
          * 0: All non-critical checks ignored.
          * 1: Straightness check ignored.
@@ -188,8 +226,7 @@ public class FloorPlanner : MonoBehaviour
         return true;
     }
 
-    void AddSpecialRooms()
-    {
+    void AddSpecialRooms() {
         if (queue.Count < 2) {
             Debug.LogError("FloorPlanner: Not enough end rooms in map; can't place Boss and Treasure room.");
             return;
@@ -221,10 +258,11 @@ public class FloorPlanner : MonoBehaviour
         x = curCell.x;
         y = curCell.y;
         map[y,x].type = RoomType.Boss;
+
+        complete = true;
     }
 
-    void InstantiateMap()
-    {
+    void InstantiateMap() {
         for (int cellY = 0; cellY < floorSize.y; cellY++) {
             for (int cellX = 0; cellX < floorSize.x; cellX++) {
 
@@ -236,55 +274,101 @@ public class FloorPlanner : MonoBehaviour
                                         (Room.size.y + Room.spacing.y) * (cellY - startCell.y),
                                         0);
 
-                GameObject roomObj = cell.type switch
-                {
-                    RoomType.Start    => Instantiate(startRoom,    position, transform.rotation),
-                    RoomType.Boss     => Instantiate(bossRoom,     position, transform.rotation),
-                    RoomType.Treasure => Instantiate(treasureRoom, position, transform.rotation),
-                    _                 => Instantiate(normalRoom,   position, transform.rotation),
-                };
-
+                GameObject roomObj = Instantiate(roomBase, position, transform.rotation);
                 roomObj.name = cell.name;
-                roomObj.GetComponent<Room>()
-                    .EnableDoors(cell.openDoors)
-                    .SetXY(cellX, cellY);
 
-                // Generate tilemap for Normal rooms
-                if (cell.type == RoomType.Normal) {
-                    int layoutIdx = GetValidLayout(cell.openDoors);
-                    Instantiate(roomLayouts[layoutIdx], roomObj.transform);
-                }
+                Room room = roomObj.GetComponent<Room>();
+                room.x = cellX;
+                room.y = cellY;
+                room.SetDoors(cell.openDoors);
 
-                globals.rooms[cellY,cellX] = roomObj;
-                roomObj.SetActive(false);
+                Transform root = roomObj.transform.Find("Root");
+                AddRoomMeshes(root, cell.openDoors, Globals.biome);
+                InstantiatePattern(root, cell.type, cell.openDoors);
+
+                Refs.rooms[cellY,cellX] = room;
             }
         }
         
-        globals.rooms[startCell.y, startCell.x].SetActive(true);
+        Refs.rooms[startCell.y, startCell.x].Enter(Direction.None);
     }
 
-    int GetValidLayout(bool[] doors)
-    {
+    void InstantiatePattern(Transform parent, RoomType type, bool[] doors) {
+        GameObject[] patterns =
+            type switch {
+                RoomType.Normal   => normalPatterns,
+                RoomType.Treasure => treasurePatterns,
+                RoomType.Boss     => bossPatterns,
+                _                 => null
+            };
+
+        if (patterns == null) return;
+        if (patterns.Length < 1) return;
+        
+        string name;
         int layoutIdx = -1;
+        int attempts = 1000;
 
-        while (layoutIdx == -1) {
-
-            // Randomly choose pattern prefab
-            layoutIdx = Random.Range(0, roomLayouts.Length);
-
-            // Ensure doors are open
-            string tag = roomLayouts[layoutIdx].tag;
-
-            if (doors[0] && !tag.Contains("T")
-             || doors[1] && !tag.Contains("L")
-             || doors[2] && !tag.Contains("D")
-             || doors[3] && !tag.Contains("R"))
+        while (layoutIdx == -1 && attempts-- > 0) {
+            layoutIdx = Random.Range(0, patterns.Length);
+            name = patterns[layoutIdx].name;
+            if (doors[0] && !name.Contains("T")
+             || doors[1] && !name.Contains("L")
+             || doors[2] && !name.Contains("D")
+             || doors[3] && !name.Contains("R"))
             {
                 layoutIdx = -1;
             }
-
         }
 
-        return layoutIdx;
+        if (layoutIdx == -1) {
+            Debug.LogError($"FloorPlanner: Unable to find valid {type} pattern.");
+            return;
+        }
+
+        Instantiate(patterns[layoutIdx], parent);
+    }
+
+    void AddRoomMeshes(Transform room, bool[] doors, Biome biome) {
+        // Corners
+        Instantiate(biome switch {
+                        Biome.Forest => forestCorners,
+                        Biome.Temple => templeCorners,
+                        _ => null
+                    }, room);
+        
+        // Ground
+        Instantiate(biome switch {
+                        Biome.Forest => forestGround,
+                        Biome.Temple => templeGround,
+                        _ => null
+                    }, room);
+
+        // Blockers
+        GameObject[] blockerMeshes = biome switch {
+            Biome.Forest => forestBlockers,
+            Biome.Temple => templeBlockers,
+            _ => null
+        };
+
+        // Doors
+        GameObject[] doorMeshes = biome switch {
+            Biome.Forest => null,
+            Biome.Temple => templeDoors,
+            _ => null
+        };
+
+        // Add Doors/Blockers
+        if (!doors[0]) Instantiate(blockerMeshes[0], room);
+        else if (doorMeshes != null) Instantiate(doorMeshes[0], room);
+
+        if (!doors[1]) Instantiate(blockerMeshes[1], room);
+        else if (doorMeshes != null) Instantiate(doorMeshes[1], room);
+
+        if (!doors[2]) Instantiate(blockerMeshes[2], room);
+        else if (doorMeshes != null) Instantiate(doorMeshes[2], room);
+
+        if (!doors[3]) Instantiate(blockerMeshes[3], room);
+        else if (doorMeshes != null) Instantiate(doorMeshes[3], room);
     }
 }

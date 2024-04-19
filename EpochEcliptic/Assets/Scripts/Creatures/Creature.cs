@@ -1,88 +1,62 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-public abstract class Creature : MonoBehaviour
-{
-    [Header("References")]
-    protected Globals globals;
-    [SerializeField] protected GameObject bullet;
-    [SerializeField] protected Rigidbody2D rb;
-
+public abstract class Creature : MonoBehaviour {
+    
     public static float size;
     public static float spacing;
 
-    [Header("Stats")]
-    [SerializeField] protected int   baseHeartContainers = 1;
-    [SerializeField] protected float baseReloadTime = 0.5f;
-    [SerializeField] protected float baseBulletSpeed = 5f;
-    [SerializeField] protected float baseBulletDuration = 1f;
-    [SerializeField] protected int   baseBulletDamage = 1;
-    [SerializeField] protected float baseMovementSpeed = 20;
-    [SerializeField] protected float invincibilityDuration = 0.25f;
+    [Header("References")]
+    [SerializeField] protected GameObject bullet;
+    [SerializeField] protected Rigidbody2D rb;
 
-    // Modifiers
-    protected StatMods mods;
+    [Header("Stats")]
+    [SerializeField] protected StatLine baseStats;
+    public StatLine mods;
 
     // Status
-    protected int health;
+    public int health;
     protected bool isInvincible = false;
     protected bool canFire = true;
+    protected bool abilityReady = true;
 
 
-    protected virtual void Start()
-    {
-        if (!GameObject.Find("Controllers").TryGetComponent(out globals)){
-            Debug.LogError("Creature: Unable to acquire reference to Globals.");
-        }
-
-        // Check serial fields
-        if (bullet == null) Debug.LogError("Creature: Missing reference to Bullet Prefab.");
-        if (rb     == null) Debug.LogError("Creature: Missing reference to Rigidbody.");
-        if (baseMovementSpeed == 0) Debug.LogError("Creature: Warning! Speed is zero.");
-
-        mods = new StatMods();
+    protected virtual void Awake() {
+        Util.CheckReference(name, "Bullet Prefab", bullet);
+        Util.CheckReference(name, "Rigidbody", rb);
+        if (baseStats.movementSpeed.flat == 0) Util.Warning(name, "Speed is zero.");
 
         // Movement and Physics
         rb.drag         = 8.0f;
         rb.gravityScale = 0.0f;
-
-        // Initialize health
-        health = baseHeartContainers * 4;
     }
 
-    public void Move(Vector2 direction)
-    {
-        // Ensure normalization of direction vector
-        direction.Normalize();
-        
-        float realMovementSpeed = (baseMovementSpeed + mods.movementSpeedFlat) * mods.movementSpeedMult;
-
+    public void Move(Vector2 direction) {
         // Smoothly accelerate to max speed
-        rb.velocity += direction * (realMovementSpeed * Time.deltaTime);
+        float realMovementSpeed = RealMovementSpeed();
+        rb.velocity += direction.normalized * (realMovementSpeed * Time.deltaTime);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, realMovementSpeed);
     }
     
-    public void Stop()
-    {
+    public void Stop() {
         rb.velocity = Vector2.zero;
     }
     
-    public void Shoot(Vector3 target)
-    {
+    public void Shoot(Vector3 target) {
         // Prevent firing if creature is unable to
         if (!canFire) return;
 
         // Calculate bullet travel direction
         Vector3 trajectory = target - transform.position;
-        trajectory.Normalize();
 
-        int realBulletDamage = (baseBulletDamage + mods.bulletDamageFlat) * mods.bulletDamageMult;
-        float realBulletSpeed = (baseBulletSpeed + mods.bulletSpeedFlat) * mods.bulletSpeedMult;
-        float realBulletDuration = (baseBulletDuration + mods.bulletDurationFlat) * mods.bulletDurationMult;
+        float realBulletDamage = RealBulletDamage();
+        float realBulletSpeed = RealBulletSpeed();
+        float realBulletDuration = RealBulletDuration();
 
         // Instantiate bullet and set attributes
         GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
-        newBullet.GetComponent<Bullet>().Initialize(trajectory * realBulletSpeed, realBulletDuration, realBulletDamage, gameObject.tag, size + spacing);
+        newBullet.GetComponent<Bullet>().Initialize(trajectory.normalized * realBulletSpeed, realBulletDuration, (int) Math.Ceiling(realBulletDamage), gameObject.tag, size + spacing);
 
         // Start reload timer
         StartCoroutine(Reload());
@@ -91,31 +65,26 @@ public abstract class Creature : MonoBehaviour
     IEnumerator Reload() {
         canFire = false;
 
-        float timer = 0;
-        // Calculates reload speed every time in case modifiers change mid-shot
-        while (timer <= (baseReloadTime + mods.reloadSpeedFlat) * mods.reloadSpeedMult) {
-            timer += Time.deltaTime;
-            yield return null;
-        }
+        float realReloadHaste = RealReloadHaste();
+        float realReloadDuration = 1f / Mathf.Exp(0.14f * realReloadHaste);
+        yield return new WaitForSeconds(realReloadDuration);
 
         canFire = true;
     }
 
-    public virtual void AddHealth(int amount)
-    {
+    public virtual void Heal(int amount) {
         // Increase health
         health += amount;
 
         // Limit health to max health
-        int realMaxHealth = (baseHeartContainers + mods.extraHeartContainers) * 4;
+        int realMaxHealth = baseStats.maxHealth + mods.maxHealth;
 
         if (health > realMaxHealth) {
             health = realMaxHealth;
         }
     }
 
-    public virtual void RemoveHealth(int amount)
-    {
+    public virtual void Damage(int amount) {
         // Prevent damage if creature is invincible
         if (isInvincible) {
             return;
@@ -132,7 +101,8 @@ public abstract class Creature : MonoBehaviour
 
     IEnumerator GrantInvincibility() {
         isInvincible = true;
-        yield return new WaitForSeconds(invincibilityDuration);
+        float realInvincibilityDuration = RealInvincibilityDuration();
+        yield return new WaitForSeconds(realInvincibilityDuration);
         isInvincible = false;
     }
 
@@ -140,40 +110,54 @@ public abstract class Creature : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // MODIFIERS
+    // STATS
 
-    public virtual void AddHeartContainers(int heartContainers)
-    {
-        mods.extraHeartContainers += heartContainers;
+    public virtual void AddStats(StatLine stats) {
+        mods += stats;
+        Heal(stats.maxHealth);
     }
 
-    public virtual void AddReloadSpeed(float flat, float mult)
-    {
-        mods.reloadSpeedFlat += flat;
-        mods.reloadSpeedMult += mult;
+    public int RealMaxHealth() {
+        return baseStats.maxHealth + mods.maxHealth;
     }
 
-    public virtual void AddBulletSpeed(float flat, float mult)
-    {
-        mods.bulletSpeedFlat += flat;
-        mods.bulletSpeedMult += mult;
+    public float RealReloadHaste() {
+        Stat temp = baseStats.reloadHaste + mods.reloadHaste;
+        return temp.flat * temp.multi;
     }
 
-    public virtual void AddBulletDuration(float flat, float mult)
-    {
-        mods.bulletDurationFlat += flat;
-        mods.bulletDurationMult += mult;
+    public float RealBulletSpeed() {
+        Stat temp = baseStats.bulletSpeed + mods.bulletSpeed;
+        return temp.flat * temp.multi;
     }
 
-    public virtual void AddBulletDamage(int flat, int mult)
-    {
-        mods.bulletDamageFlat += flat;
-        mods.bulletDamageMult += mult;
+    public float RealBulletDuration() {
+        Stat temp = baseStats.bulletDuration + mods.bulletDuration;
+        return temp.flat * temp.multi;
     }
 
-    public virtual void AddMovementSpeed(float flat, float mult)
-    {
-        mods.movementSpeedFlat += flat;
-        mods.movementSpeedMult += mult;
+    public float RealBulletDamage() {
+        Stat temp = baseStats.bulletDamage + mods.bulletDamage;
+        return temp.flat * temp.multi;
+    }
+
+    public float RealMovementSpeed() {
+        Stat temp = baseStats.movementSpeed + mods.movementSpeed;
+        return temp.flat * temp.multi;
+    }
+
+    public float RealAbilityHaste() {
+        Stat temp = baseStats.abilityHaste + mods.abilityHaste;
+        return temp.flat * temp.multi;
+    }
+
+    public float RealAbilityDuration() {
+        Stat temp = baseStats.abilityDuration + mods.abilityDuration;
+        return temp.flat * temp.multi;
+    }
+
+    public float RealInvincibilityDuration() {
+        Stat temp = baseStats.invincibilityDuration + mods.invincibilityDuration;
+        return temp.flat * temp.multi;
     }
 }

@@ -6,13 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Bullet
-  - T
-  - L
-  - D
-  - R
-  - TD
-  - LR
+  - Wall
   - TLDR
+  - LR
   layers:
   - Default
   - TransparentFX

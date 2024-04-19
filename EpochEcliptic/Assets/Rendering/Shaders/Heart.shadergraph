@@ -447,7 +447,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "5e636b61da62456a94dfea7c59402ff9",
     "m_Id": 0,
-    "m_DisplayName": "Thickness",
+    "m_DisplayName": "Thinness",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -833,10 +833,10 @@
     "m_Guid": {
         "m_GuidSerialized": "38069dbb-64d5-4a37-ab8d-c9e7dcedc235"
     },
-    "m_Name": "Thickness",
+    "m_Name": "Thinness",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Thickness",
-    "m_DefaultReferenceName": "_Thickness",
+    "m_RefNameGeneratedByDisplayName": "Thinness",
+    "m_DefaultReferenceName": "_Thinness",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
