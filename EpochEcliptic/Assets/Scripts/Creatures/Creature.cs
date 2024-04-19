@@ -49,8 +49,13 @@ public abstract class Creature : MonoBehaviour {
 
         // Calculate bullet travel direction
         Vector3 trajectory = target - transform.position;
+        SpawnBullet(trajectory);
 
-        // Instantiate bullet and set attributes
+        // Start reload timer
+        StartCoroutine(Reload());
+    }
+
+    protected void SpawnBullet(Vector3 trajectory) {
         Instantiate(bullet, transform.position, transform.rotation)
             .GetComponent<Bullet>()
             .Initialize(
@@ -60,9 +65,6 @@ public abstract class Creature : MonoBehaviour {
                 gameObject.tag,
                 size + spacing
             );
-
-        // Start reload timer
-        StartCoroutine(Reload());
     }
 
     protected virtual IEnumerator Reload() {
