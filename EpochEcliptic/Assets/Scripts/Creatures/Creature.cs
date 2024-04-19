@@ -67,7 +67,7 @@ public abstract class Creature : MonoBehaviour {
             );
     }
 
-    protected virtual IEnumerator Reload() {
+    IEnumerator Reload() {
         canFire = false;
 
         float realReloadHaste = RealReloadHaste();
