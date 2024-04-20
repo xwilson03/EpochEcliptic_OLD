@@ -43,11 +43,8 @@ public class Room : MonoBehaviour {
             Refs.player.transform.position.z
         );
 
-        // cheap way of waiting for RegisterEnemy to get called 
-        Refs.cameraController.WaitForCamera(delegate {
-            UAP_AccessibilityManager.Say(((enemies == 0) ? "No" : $"{enemies}") + " enemies.");
-            if (IsOpen()) SayDoors();
-        });
+        UAP_AccessibilityManager.Say(((enemies == 0) ? "No" : $"{enemies}") + " enemies.");
+        if (IsOpen()) SayDoors();
     }
 
     public void Exit(Direction to) {

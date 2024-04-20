@@ -11,9 +11,7 @@ public class Enemy : Creature {
         base.Awake();
         transform.parent.parent.parent.TryGetComponent(out parentRoom);
         Util.CheckReference(name, "Parent Room", parentRoom);
-    }
 
-    void Start() {
         parentRoom.RegisterEnemy(this);
     }
 
