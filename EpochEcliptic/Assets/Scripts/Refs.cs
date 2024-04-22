@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Refs {
     
     public static CameraController cameraController;
@@ -11,5 +13,8 @@ public class Refs {
     public static Player player;
     public static Room[,] rooms;
 
-    public static ObjectPool bulletPool;
+    public static ObjectPool playerBulletPool;
+    public static GameObject playerBullet;
+    public static ObjectPool enemyBulletPool;
+    public static GameObject enemyBullet;
 }
