@@ -28,14 +28,17 @@ public class ObjectPool
         return obj;
     }
 
-    public void Kill(int id) {
+    public void Kill(object sender, int id) {
         pool[id].gameObject.SetActive(false);
     }
 
     Poolable ExpandPool(int count = 1) {
         int size = pool.Count;
-        for (int i = 0; i < count; i++)
-            pool.Add(Object.Instantiate(prefab).GetComponent<Poolable>());
+        for (int i = 0; i < count; i++) {
+            Poolable obj = Object.Instantiate(prefab).GetComponent<Poolable>();
+            obj.OnDeath += Kill;
+            pool.Add(obj);
+        }
         return pool[size];
     }
 }

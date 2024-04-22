@@ -60,10 +60,6 @@ public class Bullet : Poolable {
         Die();
     }
 
-    protected override void Die() {
-        Refs.bulletPool.Kill(id);
-    }
-
     void OnTriggerEnter2D(Collider2D other) {
 
         // Prevent bullet from damaging owner
