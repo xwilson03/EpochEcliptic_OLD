@@ -14,19 +14,18 @@ public class ObjectPool
     }
 
     public void Spawn<U>(U spawnData) {
-        Poolable obj = null;
+        int size = pool.Count;
 
-        int i;
-        for (i = 0; i < pool.Count; i++) {
-            if (!pool[i].gameObject.activeInHierarchy) {
-                obj = pool[i];
+        for (int i = 0; i < size; i++) {
+            Poolable obj = pool[i];
+            if (!obj.gameObject.activeInHierarchy) {
                 obj.gameObject.SetActive(true);
-                break;
+                obj.Init(i, spawnData);
+                return;
             }
         }
 
-        if (obj == null) obj = ExpandPool();
-        obj.Init(i, spawnData);
+        ExpandPool().Init(size, spawnData);
     }
 
     public void Kill(object sender, int id) {
