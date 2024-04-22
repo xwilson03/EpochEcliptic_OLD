@@ -74,11 +74,7 @@ public abstract class Creature : MonoBehaviour {
 
     IEnumerator Reload_() {
         canFire = false;
-
-        float realReloadHaste = RealReloadHaste();
-        float realReloadDuration = 1f / Mathf.Exp(0.14f * realReloadHaste);
-        yield return new WaitForSeconds(realReloadDuration);
-
+        yield return new WaitForSeconds(1f / Mathf.Exp(0.14f * RealReloadHaste()));
         canFire = true;
     }
 
