@@ -1,9 +1,33 @@
+using System.Collections;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
-    
-    bool initialized = false;
-    float duration;
+public class BulletData {
+
+    public BulletData(
+        Vector3 velocity,
+        float offset,
+        int damage,
+        float duration,
+        string ownerTag)
+    {
+        this.velocity = velocity;
+        this.offset   = offset;
+        
+        this.damage   = damage;
+        this.duration = duration;
+        this.ownerTag = ownerTag;
+    }
+
+    public readonly Vector3 velocity;
+    public readonly float offset;
+
+    public readonly int damage;
+    public readonly float duration;
+    public readonly string ownerTag;
+}
+
+public class Bullet : Poolable {
+
     int damage;
     string ownerTag;
 
@@ -11,27 +35,33 @@ public class Bullet : MonoBehaviour {
 
     void Awake() {
         Util.CheckReference(name, "RigidBody", rb);
-    }
-
-    void Update() {
-        // Await member initialization
-        if (!initialized) return;
-
-        // Decrease lifetime and destroy object once time expires
-        duration -= Time.deltaTime;
-        if (duration <= 0.0) Destroy(gameObject);
-    }
-
-    public void Initialize(Vector3 velocity, float duration, int damage, string ownerTag, float spawnDistance) {
-        transform.position += velocity.normalized * spawnDistance;
-        rb.velocity = velocity;
         rb.gravityScale = 0.0f;
-        
-        this.duration = duration;
-        this.damage = damage;
-        this.ownerTag = ownerTag;
+    }
 
-        initialized = true;
+    public override void Init<T>(int id, T t_data){
+        if (t_data is not BulletData data) {
+            Util.Error(name, "Invalid spawn data.");
+            return;
+        }
+
+        this.id = id;
+
+        transform.position += data.velocity.normalized * data.offset;
+        rb.velocity = data.velocity;
+        
+        damage = data.damage;
+        ownerTag = data.ownerTag;
+
+        StartCoroutine(LiveFor_(data.duration));
+    }
+
+    IEnumerator LiveFor_(float duration){
+        yield return new WaitForSeconds(duration);
+        Die();
+    }
+
+    protected override void Die() {
+        Refs.bulletPool.Kill(id);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -46,7 +76,7 @@ public class Bullet : MonoBehaviour {
 
         // Destroy if colliding with non-bullet
         if (other.CompareTag("Player") || other.CompareTag("Enemy") || other.CompareTag("Wall")) {
-            Destroy(gameObject);
+            Die();
         }
     }
 }
