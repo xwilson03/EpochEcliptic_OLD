@@ -56,15 +56,16 @@ public abstract class Creature : MonoBehaviour {
     }
 
     protected void SpawnBullet(Vector3 trajectory) {
-        Instantiate(bullet, transform.position, transform.rotation)
-            .GetComponent<Bullet>()
-            .Initialize(
-                trajectory.normalized * RealBulletSpeed(),
-                RealBulletDuration(),
-                (int) Math.Ceiling(RealBulletDamage()),
-                gameObject.tag,
-                size + spacing
-            );
+
+        BulletData bulletData = new (
+            trajectory.normalized * RealBulletSpeed(),
+            size + spacing,
+            (int) Math.Ceiling(RealBulletDamage()),
+            RealBulletDuration(),
+            tag
+        );
+
+        Refs.bulletPool.Spawn(bulletData);
     }
 
     protected void Reload() {
