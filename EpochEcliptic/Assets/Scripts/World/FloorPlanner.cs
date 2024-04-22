@@ -26,7 +26,6 @@ public class FloorPlanner : MonoBehaviour {
         public string name;
         public RoomType type = RoomType.Normal;
         public bool[] openDoors = {false, false, false, false};
-        public bool isEndRoom;
     }
 
     [Header("Prefabs")]
