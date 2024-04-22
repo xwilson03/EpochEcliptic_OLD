@@ -9,6 +9,7 @@ public abstract class Creature : MonoBehaviour {
 
     [Header("References")]
     [SerializeField] protected GameObject bullet;
+    protected ObjectPool bulletPool;
     protected Rigidbody2D rb;
 
     [Header("Stats")]
@@ -65,7 +66,7 @@ public abstract class Creature : MonoBehaviour {
             tag
         );
 
-        Refs.bulletPool.Spawn(bulletData);
+        bulletPool.Spawn(bulletData);
     }
 
     protected void Reload() {

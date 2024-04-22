@@ -9,10 +9,16 @@ public class Enemy : Creature {
 
     protected override void Awake() {
         base.Awake();
+        
         transform.parent.parent.parent.TryGetComponent(out parentRoom);
         Util.CheckReference(name, "Parent Room", parentRoom);
-
         parentRoom.RegisterEnemy(this);
+
+        if (Refs.enemyBullet == null) Refs.enemyBullet = bullet;
+    }
+
+    void Start() {
+        bulletPool = Refs.enemyBulletPool;
     }
 
     protected void ShootRing(int count, float angle, bool force = false) {

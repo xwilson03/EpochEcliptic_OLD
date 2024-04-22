@@ -14,10 +14,12 @@ public class Player : Creature {
         if (Globals.playerHealth != 0) health = Globals.playerHealth;
 
         Refs.player = this;
+        Refs.playerBullet = bullet;
     }
 
     void Start() {
         Refs.healthOverlay.Refresh();
+        bulletPool = Refs.playerBulletPool;
 
         UAP_AccessibilityManager.Say($"{health} of " + RealMaxHealth() + "health left.");
         UAP_AccessibilityManager.SaySkippable("Ability ready.");
