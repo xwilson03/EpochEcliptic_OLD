@@ -14,7 +14,6 @@ public class Player : Creature {
         if (Globals.playerHealth != 0) health = Globals.playerHealth;
 
         Refs.player = this;
-        Refs.playerBullet = bullet;
     }
 
     void Start() {

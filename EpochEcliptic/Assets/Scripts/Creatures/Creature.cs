@@ -8,7 +8,6 @@ public abstract class Creature : MonoBehaviour {
     public static float spacing;
 
     [Header("References")]
-    [SerializeField] protected GameObject bullet;
     protected ObjectPool bulletPool;
     protected Rigidbody2D rb;
 
@@ -24,7 +23,6 @@ public abstract class Creature : MonoBehaviour {
 
 
     protected virtual void Awake() {
-        Util.CheckReference(name, "Bullet Prefab", bullet);
         if (baseStats.movementSpeed.flat == 0) Util.Warning(name, "Speed is zero.");
 
         // Movement and Physics

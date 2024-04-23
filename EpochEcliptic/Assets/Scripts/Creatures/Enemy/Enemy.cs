@@ -13,8 +13,6 @@ public class Enemy : Creature {
         transform.parent.parent.parent.TryGetComponent(out parentRoom);
         Util.CheckReference(name, "Parent Room", parentRoom);
         parentRoom.RegisterEnemy(this);
-
-        if (Refs.enemyBullet == null) Refs.enemyBullet = bullet;
     }
 
     void Start() {
