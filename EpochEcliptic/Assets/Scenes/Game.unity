@@ -915,8 +915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5807c5937f7e26146bb112620234606e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
-  rb: {fileID: 283181293}
   baseStats:
     maxHealth: 12
     reloadHaste:
@@ -2744,6 +2742,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c5784b4c91bcc4d910eee980565c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBullet: {fileID: 0}
+  enemyBullet: {fileID: 0}
+  bulletPoolSize: 0
 --- !u!114 &867894781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2756,6 +2757,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c5784b4c91bcc4d910eee980565c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
+  enemyBullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
+  bulletPoolSize: 100
 --- !u!1 &888646293
 GameObject:
   m_ObjectHideFlags: 0
