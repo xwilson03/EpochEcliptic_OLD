@@ -2743,7 +2743,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
   enemyBullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
-  bulletPoolSize: 100
+  playerBulletPoolSize: 20
+  enemyBulletPoolSize: 40
 --- !u!1 &888646293
 GameObject:
   m_ObjectHideFlags: 0
