@@ -5,12 +5,14 @@ public class BulletData {
 
     public BulletData(
         Vector3 velocity,
+        Vector3 startPos,
         float offset,
         int damage,
         float duration,
         string ownerTag)
     {
         this.velocity = velocity;
+        this.startPos = startPos;
         this.offset   = offset;
         
         this.damage   = damage;
@@ -19,6 +21,7 @@ public class BulletData {
     }
 
     public readonly Vector3 velocity;
+    public readonly Vector3 startPos;
     public readonly float offset;
 
     public readonly int damage;
@@ -48,7 +51,7 @@ public class Bullet : Poolable {
 
         this.id = id;
 
-        transform.position += data.velocity.normalized * data.offset;
+        transform.position = data.startPos + (data.velocity.normalized * data.offset);
         rb.velocity = data.velocity;
         
         damage = data.damage;

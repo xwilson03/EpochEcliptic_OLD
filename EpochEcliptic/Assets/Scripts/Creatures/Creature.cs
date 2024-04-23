@@ -58,6 +58,7 @@ public abstract class Creature : MonoBehaviour {
 
         BulletData bulletData = new (
             trajectory.normalized * RealBulletSpeed(),
+            transform.position,
             size + spacing,
             (int) Math.Ceiling(RealBulletDamage()),
             RealBulletDuration(),
