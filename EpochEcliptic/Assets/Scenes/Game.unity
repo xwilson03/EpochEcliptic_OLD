@@ -2463,7 +2463,6 @@ GameObject:
   m_Component:
   - component: {fileID: 867894771}
   - component: {fileID: 867894770}
-  - component: {fileID: 867894780}
   - component: {fileID: 867894776}
   - component: {fileID: 867894774}
   - component: {fileID: 867894777}
@@ -2730,21 +2729,6 @@ MonoBehaviour:
     invincibilityDuration:
       flat: 0.01
       multi: 0
---- !u!114 &867894780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867894768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c5784b4c91bcc4d910eee980565c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBullet: {fileID: 0}
-  enemyBullet: {fileID: 0}
-  bulletPoolSize: 0
 --- !u!114 &867894781
 MonoBehaviour:
   m_ObjectHideFlags: 0
