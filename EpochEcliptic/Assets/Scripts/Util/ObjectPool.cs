@@ -13,6 +13,11 @@ public class ObjectPool
         ExpandPool(startCapacity);
     }
 
+    public void Clear() {
+        foreach(var obj in pool)
+            obj.gameObject.SetActive(false);
+    }
+
     public void Spawn<U>(U spawnData) {
         int size = pool.Count;
 
