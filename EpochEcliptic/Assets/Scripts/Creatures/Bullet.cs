@@ -44,6 +44,8 @@ public class Bullet : Poolable {
             return;
         }
 
+        base.Init(id, t_data);
+
         this.id = id;
 
         transform.position += data.velocity.normalized * data.offset;

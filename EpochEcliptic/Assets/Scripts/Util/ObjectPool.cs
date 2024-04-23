@@ -19,18 +19,18 @@ public class ObjectPool
     }
 
     public void Spawn<U>(U spawnData) {
-        int size = pool.Count;
+        Poolable obj = null;
 
-        for (int i = 0; i < size; i++) {
-            Poolable obj = pool[i];
-            if (!obj.gameObject.activeInHierarchy) {
-                obj.gameObject.SetActive(true);
-                obj.Init(i, spawnData);
-                return;
+        int i;
+        for (i = 0; i < pool.Count; i++) {
+            if (!pool[i].gameObject.activeInHierarchy) {
+                obj = pool[i];
+                break;
             }
         }
-
-        ExpandPool().Init(size, spawnData);
+        if (obj == null) obj = ExpandPool();
+        
+        obj.Init(i, spawnData);
     }
 
     public void Kill(object sender, int id) {
@@ -43,6 +43,7 @@ public class ObjectPool
             Poolable obj = Object.Instantiate(prefab).GetComponent<Poolable>();
 
             obj.OnDeath += Kill;
+            obj.gameObject.SetActive(false);
             pool.Add(obj);
         }
         return pool[size];

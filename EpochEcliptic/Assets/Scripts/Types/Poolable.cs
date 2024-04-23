@@ -5,7 +5,10 @@ public abstract class Poolable : MonoBehaviour {
     public event EventHandler<int> OnDeath = delegate {};
     public int id;
 
-    public abstract void Init<T>(int id, T spawnData);
+    public virtual void Init<T>(int id, T spawnData) {
+        this.gameObject.SetActive(true);
+    }
+
     protected void Die() {
         OnDeath.Invoke(this, id);
     }
