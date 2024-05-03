@@ -16,11 +16,13 @@ public class StateController : MonoBehaviour {
         if (playerBulletPoolSize == 0) Util.Error(name, "Player Bullet Pool Size not set.");
         if (enemyBulletPoolSize == 0) Util.Error(name, "Enemy Bullet Pool Size not set.");
 
-        if (Refs.playerBulletPool == null) Refs.playerBulletPool = new (playerBullet, playerBulletPoolSize);
-        else Refs.playerBulletPool.Clear();
+        if (SceneManager.GetActiveScene().name == "Game") {
+            if (Refs.playerBulletPool == null) Refs.playerBulletPool = new (playerBullet, playerBulletPoolSize);
+            else Refs.playerBulletPool.Clear();
 
-        if (Refs.enemyBulletPool == null) Refs.enemyBulletPool = new (enemyBullet, enemyBulletPoolSize);
-        else Refs.enemyBulletPool.Clear();
+            if (Refs.enemyBulletPool == null) Refs.enemyBulletPool = new (enemyBullet, enemyBulletPoolSize);
+            else Refs.enemyBulletPool.Clear();
+        }
 
         
         if (SceneManager.GetActiveScene().name == "MainMenu") {
