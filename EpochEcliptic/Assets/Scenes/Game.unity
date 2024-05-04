@@ -5492,6 +5492,7 @@ GameObject:
   - component: {fileID: 867894776}
   - component: {fileID: 867894774}
   - component: {fileID: 867894777}
+  - component: {fileID: 867894782}
   - component: {fileID: 867894779}
   - component: {fileID: 867894769}
   - component: {fileID: 867894781}
@@ -5640,6 +5641,150 @@ MonoBehaviour:
   twoHeart: {fileID: 4300000, guid: b43c7dbc25bea4b448342754924ae5e6, type: 2}
   threeHeart: {fileID: 4300000, guid: 482f44da6e94b364692a58197476f9ab, type: 2}
   fourHeart: {fileID: 4300000, guid: 3adde2df6d5f61d4d93075798117baf5, type: 2}
+--- !u!114 &867894776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867894768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b504ddcedc64288409a9fe07af8d3ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraObj: {fileID: 519420028}
+  volume: {fileID: 525491007}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &867894777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867894768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55311938aa036c84484dfc8eca52594f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullImage: {fileID: 319464747}
+--- !u!114 &867894779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867894768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf00a594edf51b2498e6b7e658cd296b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  min:
+    maxHealth: 1
+    reloadHaste:
+      flat: 0
+      multi: 0
+    bulletSpeed:
+      flat: 1
+      multi: 0
+    bulletDuration:
+      flat: 0.1
+      multi: 0
+    bulletDamage:
+      flat: 1
+      multi: 0
+    movementSpeed:
+      flat: 2
+      multi: 0
+    abilityHaste:
+      flat: 1
+      multi: 0
+    abilityDuration:
+      flat: 0
+      multi: 0
+    invincibilityDuration:
+      flat: 0.01
+      multi: 0
+  max:
+    maxHealth: 2
+    reloadHaste:
+      flat: 0
+      multi: 0
+    bulletSpeed:
+      flat: 5
+      multi: 0
+    bulletDuration:
+      flat: 0.4
+      multi: 0
+    bulletDamage:
+      flat: 2
+      multi: 0
+    movementSpeed:
+      flat: 5
+      multi: 0
+    abilityHaste:
+      flat: 2
+      multi: 0
+    abilityDuration:
+      flat: 0
+      multi: 0
+    invincibilityDuration:
+      flat: 0.01
+      multi: 0
+--- !u!114 &867894781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867894768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c5784b4c91bcc4d910eee980565c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
+  enemyBullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
+  playerBulletPoolSize: 20
+  enemyBulletPoolSize: 40
+--- !u!114 &867894782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867894768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28756e8498fab3e4d810dc63ce37dfe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 722295144}
   bossContainer: {fileID: 1162715395}
   left: {fileID: 1191911280}
   middles:
@@ -5778,137 +5923,6 @@ MonoBehaviour:
   - {fileID: 664787108}
   - {fileID: 1253034149}
   right: {fileID: 1022790229}
---- !u!114 &867894776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867894768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b504ddcedc64288409a9fe07af8d3ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraObj: {fileID: 519420028}
-  volume: {fileID: 525491007}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &867894777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867894768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55311938aa036c84484dfc8eca52594f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullImage: {fileID: 319464747}
---- !u!114 &867894779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867894768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf00a594edf51b2498e6b7e658cd296b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  min:
-    maxHealth: 1
-    reloadHaste:
-      flat: 0
-      multi: 0
-    bulletSpeed:
-      flat: 1
-      multi: 0
-    bulletDuration:
-      flat: 0.1
-      multi: 0
-    bulletDamage:
-      flat: 1
-      multi: 0
-    movementSpeed:
-      flat: 2
-      multi: 0
-    abilityHaste:
-      flat: 1
-      multi: 0
-    abilityDuration:
-      flat: 0
-      multi: 0
-    invincibilityDuration:
-      flat: 0.01
-      multi: 0
-  max:
-    maxHealth: 2
-    reloadHaste:
-      flat: 0
-      multi: 0
-    bulletSpeed:
-      flat: 5
-      multi: 0
-    bulletDuration:
-      flat: 0.4
-      multi: 0
-    bulletDamage:
-      flat: 2
-      multi: 0
-    movementSpeed:
-      flat: 5
-      multi: 0
-    abilityHaste:
-      flat: 2
-      multi: 0
-    abilityDuration:
-      flat: 0
-      multi: 0
-    invincibilityDuration:
-      flat: 0.01
-      multi: 0
---- !u!114 &867894781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867894768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c5784b4c91bcc4d910eee980565c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
-  enemyBullet: {fileID: 3586620698072114615, guid: d2aec4135f594df48ad03853628dd1c4, type: 3}
-  playerBulletPoolSize: 20
-  enemyBulletPoolSize: 40
 --- !u!1 &888646293
 GameObject:
   m_ObjectHideFlags: 0
