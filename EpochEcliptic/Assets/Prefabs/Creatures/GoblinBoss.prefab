@@ -168,7 +168,7 @@ MonoBehaviour:
       multi: 0
   health: 30
   attackChance: 0.25
-  timeBetweenVolleys: 0.5
+  timeBetweenVolleys: 0.25
   chaseChance: 0.5
   chaseDuration: 3
   actionCooldown: 1
