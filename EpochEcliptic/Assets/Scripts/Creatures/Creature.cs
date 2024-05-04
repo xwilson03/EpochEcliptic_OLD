@@ -11,6 +11,7 @@ public abstract class Creature : MonoBehaviour {
     protected ObjectPool bulletPool;
     protected Rigidbody2D rb;
     [SerializeField] protected AudioSource walkNoise;
+    [SerializeField] protected AudioSource hurtNoise;
 
     [Header("Stats")]
     [SerializeField] protected StatLine baseStats;
@@ -106,7 +107,8 @@ public abstract class Creature : MonoBehaviour {
         // Grant temporary invincibility and reduce health
         StartCoroutine(GrantInvincibility());
         health -= amount;
-        
+        hurtNoise.Play();
+
         if (health < 1) {
             Die();
         }

@@ -196,6 +196,7 @@ MonoBehaviour:
   id: 0
   rb: {fileID: -6164345403748545131}
   fireNoise: {fileID: 6003857551889755814}
+  hitNoise: {fileID: 0}
 --- !u!82 &6003857551889755814
 AudioSource:
   m_ObjectHideFlags: 0
