@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3161652273656104419}
   - component: {fileID: 1107412490787986135}
   - component: {fileID: 3276487563937959749}
+  - component: {fileID: 7296922106296972862}
   - component: {fileID: 1345480588399526615}
   - component: {fileID: 381147324515096435}
   m_Layer: 0
@@ -98,6 +99,14 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!81 &7296922106296972862
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378038904055206230}
+  m_Enabled: 1
 --- !u!114 &1345480588399526615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5807c5937f7e26146bb112620234606e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnNoise: {fileID: 0}
   walkNoise: {fileID: 381147324515096435}
   baseStats:
     maxHealth: 12
@@ -246,7 +256,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
