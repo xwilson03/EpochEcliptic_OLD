@@ -11,6 +11,7 @@ public class Refs {
     public static ItemGenerator itemGenerator;
 
     public static Player player;
+    public static Creature boss;
     public static Room[,] rooms;
 
     public static ObjectPool playerBulletPool;
