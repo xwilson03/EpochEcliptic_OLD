@@ -99,6 +99,8 @@ public abstract class Creature : MonoBehaviour {
     }
 
     public virtual void Damage(int amount) {
+        hurtNoise.Play();
+        
         // Prevent damage if creature is invincible
         if (isInvincible) {
             return;
@@ -107,7 +109,6 @@ public abstract class Creature : MonoBehaviour {
         // Grant temporary invincibility and reduce health
         StartCoroutine(GrantInvincibility());
         health -= amount;
-        hurtNoise.Play();
 
         if (health < 1) {
             Die();
