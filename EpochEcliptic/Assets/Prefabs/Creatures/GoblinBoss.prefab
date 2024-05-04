@@ -167,6 +167,7 @@ MonoBehaviour:
       flat: 0
       multi: 0
   health: 30
+  title: Arnold, Goblin King
   attackChance: 0.25
   timeBetweenVolleys: 0.25
   chaseChance: 0.5
