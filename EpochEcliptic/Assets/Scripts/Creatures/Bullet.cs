@@ -36,10 +36,12 @@ public class Bullet : Poolable {
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] AudioSource fireNoise;
+    [SerializeField] AudioSource hitNoise;
 
     void Awake() {
         Util.CheckReference(name, "RigidBody", rb);
         Util.CheckReference(name, "Fire Noise", fireNoise);
+        Util.CheckReference(name, "Hit Noise", hitNoise);
         rb.gravityScale = 0.0f;
     }
 
@@ -79,7 +81,10 @@ public class Bullet : Poolable {
         }
 
         // Destroy if colliding with non-bullet
-        if (other.CompareTag("Player") || other.CompareTag("Enemy") || other.CompareTag("Wall")) {
+        if (!other.CompareTag("Bullet")) {
+            if (other.CompareTag("Player") || other.CompareTag("Enemy")) {
+                hitNoise.Play();
+            }
             Die();
         }
     }
