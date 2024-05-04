@@ -7,6 +7,7 @@ public class Refs {
     public static Fader fader;
     public static HealthOverlay healthOverlay;
     public static AbilityOverlay abilityOverlay;
+    public static BossOverlay bossOverlay;
 
     public static ItemGenerator itemGenerator;
 

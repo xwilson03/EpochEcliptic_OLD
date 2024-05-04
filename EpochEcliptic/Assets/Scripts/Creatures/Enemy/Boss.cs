@@ -9,16 +9,17 @@ public class Boss : Enemy {
         if (title == "") Util.Error(name, "Missing Title.");
 
         Refs.boss = this;
-        Refs.healthOverlay.ShowBossHealth();
+        Refs.bossOverlay.SetTitle(title);
+        Refs.bossOverlay.Show();
     }
 
     public override void Damage(int amount) {
         base.Damage(amount);
-        Refs.healthOverlay.RefreshBoss();
+        Refs.bossOverlay.RefreshHealth();
     }
 
     protected override void Die() {
-        Refs.healthOverlay.HideBossHealth();
+        Refs.bossOverlay.Hide();
         transform.parent.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
         base.Die();
     }
