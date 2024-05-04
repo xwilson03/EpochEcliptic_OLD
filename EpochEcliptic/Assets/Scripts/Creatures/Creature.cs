@@ -24,6 +24,7 @@ public abstract class Creature : MonoBehaviour {
 
 
     protected virtual void Awake() {
+        Util.CheckReference(name, "Walk Noise", walkNoise);
         if (baseStats.movementSpeed.flat == 0) Util.Warning(name, "Speed is zero.");
 
         // Movement and Physics
