@@ -20,7 +20,7 @@ public class Player : Creature {
     }
 
     void Start() {
-        Refs.healthOverlay.RefreshPlayer();
+        Refs.healthOverlay.Refresh();
         bulletPool = Refs.playerBulletPool;
 
         UAP_AccessibilityManager.Say($"{health} of " + RealMaxHealth() + "health left.");
@@ -77,7 +77,7 @@ public class Player : Creature {
 
         // Add health and update UI
         base.Heal(amount);
-        Refs.healthOverlay.RefreshPlayer();
+        Refs.healthOverlay.Refresh();
         
         if (oldHealth != health)
             UAP_AccessibilityManager.Say($"{health} health left.");
@@ -88,7 +88,7 @@ public class Player : Creature {
 
         // Remove health if not invulnerable and update UI
         base.Damage(amount);
-        Refs.healthOverlay.RefreshPlayer();
+        Refs.healthOverlay.Refresh();
 
         if (oldHealth != health)
             UAP_AccessibilityManager.Say($"{health} health left.");
@@ -98,7 +98,7 @@ public class Player : Creature {
         // Apply mods and refresh health UI if needed
         base.AddStats(stats);
         if (stats.maxHealth != 0) {
-            Refs.healthOverlay.RefreshPlayer();
+            Refs.healthOverlay.Refresh();
         }
     }  
 }
