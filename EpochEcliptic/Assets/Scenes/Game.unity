@@ -2186,10 +2186,10 @@ MonoBehaviour:
   - {fileID: 571856609}
   - {fileID: 49108921}
   emptyHeart: {fileID: 3648737777661448857, guid: 0dab5c33d6cad114998882e813980d94, type: 3}
-  oneHeart: {fileID: -1956683343643840912, guid: 0dab5c33d6cad114998882e813980d94, type: 3}
-  twoHeart: {fileID: -7902127906988925002, guid: 0dab5c33d6cad114998882e813980d94, type: 3}
-  threeHeart: {fileID: 9128922488465998656, guid: 0dab5c33d6cad114998882e813980d94, type: 3}
-  fourHeart: {fileID: -6986275237000010781, guid: 0dab5c33d6cad114998882e813980d94, type: 3}
+  oneHeart: {fileID: 4300000, guid: ae23370373faf6844a5c30e316060cf3, type: 2}
+  twoHeart: {fileID: 4300000, guid: b43c7dbc25bea4b448342754924ae5e6, type: 2}
+  threeHeart: {fileID: 4300000, guid: 482f44da6e94b364692a58197476f9ab, type: 2}
+  fourHeart: {fileID: 4300000, guid: 3adde2df6d5f61d4d93075798117baf5, type: 2}
 --- !u!114 &867894776
 MonoBehaviour:
   m_ObjectHideFlags: 0
