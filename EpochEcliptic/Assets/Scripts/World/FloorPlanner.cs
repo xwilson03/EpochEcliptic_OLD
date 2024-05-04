@@ -1,21 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum Heading {
-    None  = 0,
-    Top   = 1,
-    Left  = 2,
-    Down  = 3,
-    Right = 4
-}
-
-enum RoomType {
-    Normal   = 0,
-    Start    = 1,
-    Boss     = 2,
-    Treasure = 3
-}
-
 public class FloorPlanner : MonoBehaviour {
 
     class Cell {
