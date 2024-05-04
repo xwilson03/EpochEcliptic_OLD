@@ -7,6 +7,9 @@ public class Player : Creature {
     new public static float spacing = 0.1f;
     [SerializeField] StatLine abilityMods;
 
+    [SerializeField] AudioSource abilityCharged;
+    [SerializeField] AudioSource abilityUsed;
+
     protected override void Awake() {
         base.Awake();
 
@@ -42,7 +45,7 @@ public class Player : Creature {
         float realAbilityCooldown = 2.5f / Mathf.Exp(0.14f * realAbilityHaste);
 
         AddStats(abilityMods);
-        UAP_AccessibilityManager.SaySkippable("Ability used.");
+        abilityUsed.Play();
 
         float timer = 0;
         while (timer <= realAbilityDuration) {
@@ -61,7 +64,7 @@ public class Player : Creature {
         }
 
         abilityReady = true;
-        UAP_AccessibilityManager.SaySkippable("Ability ready.");
+        abilityCharged.Play();
     }
 
     protected override void Die() {
