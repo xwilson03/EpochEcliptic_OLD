@@ -78,8 +78,8 @@ public class Bullet : Poolable {
             creature.Damage(damage);
         }
 
-        // Destroy if colliding with non-bullet
-        if (!other.CompareTag("Bullet")) {
+        // Destroy if colliding with creature or wall
+        if (other.CompareTag("Player") || other.CompareTag("Enemy") || other.CompareTag("Wall")) {
             Die();
         }
     }
