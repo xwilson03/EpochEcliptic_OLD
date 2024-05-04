@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5114272643368175010}
   - component: {fileID: 6553258822136152891}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_PrefixIsLocalizationKey: 0
   m_PrefixIsPostFix: 0
   m_FilterText: 1
-  m_Text: Back
+  m_Text: Text
   m_NameLabel: {fileID: 7755257668494123650}
   m_AdditionalNameLabels: []
   m_TestList: []
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 9206773963503440360}
   - component: {fileID: 2239129526559825386}
   m_Layer: 5
-  m_Name: BackText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 450, y: 100}
+  m_SizeDelta: {x: 210, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9206773963503440360
 CanvasRenderer:
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c634e07af8f9ae14caba3174137e86d8, type: 2}
   m_sharedMaterial: {fileID: 8997559547454214382, guid: c634e07af8f9ae14caba3174137e86d8, type: 2}

@@ -375,6 +375,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1203549520249400697}
     m_Modifications:
+    - target: {fileID: 2239129526559825386, guid: e08ebcf7028487249b9901f621bbd0f3, type: 3}
+      propertyPath: m_text
+      value: Back
+      objectReference: {fileID: 0}
     - target: {fileID: 3252091646531383932, guid: e08ebcf7028487249b9901f621bbd0f3, type: 3}
       propertyPath: m_Name
       value: BackButton
