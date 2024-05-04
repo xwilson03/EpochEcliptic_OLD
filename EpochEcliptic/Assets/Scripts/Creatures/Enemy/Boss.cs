@@ -1,8 +1,13 @@
 
 public class Boss : Enemy {
 
+    public string title = "";
+
     protected override void Awake() {
         base.Awake();
+
+        if (title == "") Util.Error(name, "Missing Title.");
+
         Refs.boss = this;
         Refs.healthOverlay.ShowBossHealth();
     }
