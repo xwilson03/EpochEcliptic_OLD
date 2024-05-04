@@ -580,8 +580,8 @@ RectTransform:
   m_Children:
   - {fileID: 639592817}
   - {fileID: 2439598198417799904}
-  - {fileID: 1428317106}
   - {fileID: 273643958}
+  - {fileID: 1428317106}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1113,17 +1113,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1762729563}
     m_Modifications:
-    - target: {fileID: 2201586671632774433, guid: 1c52e831c2247cd45901bd459c40d768, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6313894449275720682, guid: 1c52e831c2247cd45901bd459c40d768, type: 3}
       propertyPath: m_Name
       value: MainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 6313894449275720682, guid: 1c52e831c2247cd45901bd459c40d768, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7269115388323308046, guid: 1c52e831c2247cd45901bd459c40d768, type: 3}
       propertyPath: m_Pivot.x
