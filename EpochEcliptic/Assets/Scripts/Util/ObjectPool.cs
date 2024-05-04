@@ -44,6 +44,7 @@ public class ObjectPool
 
             obj.OnDeath += Kill;
             obj.gameObject.SetActive(false);
+            Object.DontDestroyOnLoad(obj.gameObject);
             pool.Add(obj);
         }
         return pool[size];
