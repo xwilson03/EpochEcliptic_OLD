@@ -133,7 +133,7 @@ MonoBehaviour:
       flat: 5
       multi: 1
     bulletDuration:
-      flat: 0.75
+      flat: 1
       multi: 1
     bulletDamage:
       flat: 1
