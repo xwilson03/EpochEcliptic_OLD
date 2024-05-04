@@ -41,7 +41,7 @@ public abstract class Creature : MonoBehaviour {
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, realMovementSpeed);
 
         if (Time.timeScale > 0 && !walkNoise.isPlaying) {
-            walkNoise.pitch = realMovementSpeed / 30f;
+            walkNoise.pitch = (realMovementSpeed - 25) / 100f + 0.5f;
             walkNoise.Play();
         }
     }
