@@ -3,7 +3,7 @@ public class Globals {
     public static Biome biome = Biome.Forest;
     public static int level = 1;
     public static int biomeLength = 3;
-    public static float difficulty = 0f;
+    public static float difficulty = 0.1f;
     public static float difficultyPerStage = 0.1f;
 
     public static StatLine playerMods;
