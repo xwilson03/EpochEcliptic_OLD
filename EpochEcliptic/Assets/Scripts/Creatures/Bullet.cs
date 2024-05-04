@@ -35,9 +35,11 @@ public class Bullet : Poolable {
     string ownerTag;
 
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] AudioSource fireNoise;
 
     void Awake() {
         Util.CheckReference(name, "RigidBody", rb);
+        Util.CheckReference(name, "Fire Noise", fireNoise);
         rb.gravityScale = 0.0f;
     }
 
@@ -57,6 +59,7 @@ public class Bullet : Poolable {
         damage = data.damage;
         ownerTag = data.ownerTag;
 
+        fireNoise.Play();
         StartCoroutine(LiveFor_(data.duration));
     }
 
