@@ -140,7 +140,7 @@ MonoBehaviour:
       flat: 25
       multi: 1
     abilityHaste:
-      flat: 0
+      flat: -10
       multi: 1
     abilityDuration:
       flat: 3
