@@ -115,7 +115,7 @@ MonoBehaviour:
   walkNoise: {fileID: 7733686848112554637}
   hurtNoise: {fileID: 6196082726499564546}
   baseStats:
-    maxHealth: 15
+    maxHealth: 30
     reloadHaste:
       flat: 0
       multi: 0
@@ -166,9 +166,9 @@ MonoBehaviour:
     invincibilityDuration:
       flat: 0
       multi: 0
-  health: 15
+  health: 30
   attackChance: 0.25
-  timeBetweenVolleys: 0.25
+  timeBetweenVolleys: 0.5
   chaseChance: 0.5
   chaseDuration: 3
   actionCooldown: 1
