@@ -10,6 +10,7 @@ public abstract class Creature : MonoBehaviour {
     [Header("References")]
     protected ObjectPool bulletPool;
     protected Rigidbody2D rb;
+    [SerializeField] protected AudioSource walkNoise;
 
     [Header("Stats")]
     [SerializeField] protected StatLine baseStats;
@@ -36,6 +37,11 @@ public abstract class Creature : MonoBehaviour {
         float realMovementSpeed = RealMovementSpeed();
         rb.velocity += direction.normalized * (realMovementSpeed * Time.deltaTime);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, realMovementSpeed);
+
+        if (Time.timeScale > 0 && !walkNoise.isPlaying) {
+            walkNoise.pitch = realMovementSpeed / 30f;
+            walkNoise.Play();
+        }
     }
     
     public void Stop() {
