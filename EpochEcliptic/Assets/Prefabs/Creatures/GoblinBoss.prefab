@@ -111,7 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb77fde39a7ff8847ae5400b2805b033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnNoise: {fileID: 0}
   walkNoise: {fileID: 7733686848112554637}
   baseStats:
     maxHealth: 15
@@ -183,7 +182,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 95e719cf52f1dd546a991654a5302fde, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -280,7 +279,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: bfdefb9fb5ee7db4a97e566d1330a528, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
