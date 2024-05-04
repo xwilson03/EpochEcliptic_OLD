@@ -26,10 +26,12 @@ public class BossOverlay : MonoBehaviour {
 
 
     public void Show() {
+        title.gameObject.SetActive(true);
         bossContainer.SetActive(true);
     }
 
     public void Hide() {
+        title.gameObject.SetActive(false);
         bossContainer.SetActive(false);
     }
 
