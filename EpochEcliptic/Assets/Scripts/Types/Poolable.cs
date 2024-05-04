@@ -6,7 +6,7 @@ public abstract class Poolable : MonoBehaviour {
     public int id;
 
     public virtual void Init<T>(int id, T spawnData) {
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     protected void Die() {
