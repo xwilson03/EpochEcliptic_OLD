@@ -31,6 +31,7 @@ public class OptionsMenu : Menu {
         accessibilityButton.onClick.AddListener(delegate {ToggleAccessibility();});
         lessMotionButton.onClick.AddListener(delegate    {ToggleLessMotion();});
         backButton.onClick.AddListener(delegate          {MenuController.Back();});
+        volumeSlider.onValueChanged.AddListener(delegate {SetVolume();});
 
         accessibilityText.text = Util.BoolToStatus(Util.GetBool("accessibility", true));
         lessMotionText.text =    Util.BoolToStatus(Util.GetBool("lessMotion", false));
