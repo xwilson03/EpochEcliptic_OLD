@@ -53,7 +53,7 @@ public class Bullet : Poolable {
 
         this.id = id;
 
-        transform.position = data.startPos + (data.velocity.normalized * data.offset);
+        transform.position = data.startPos + (data.velocity.normalized * (data.offset + transform.localScale.x));
         rb.velocity = data.velocity;
         
         damage = data.damage;
