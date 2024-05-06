@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5930502496702344174}
   m_Layer: 0
   m_Name: WallD1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 2862874673866824917}
   m_Layer: 0
   m_Name: BlockerL
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 7043763982429535164}
   m_Layer: 0
   m_Name: WallT1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 371786206256646224}
   m_Layer: 0
   m_Name: BlockerR
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66b1ab9a46d544c91fcd8812a80e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 4
+  direction: 0
   parent: {fileID: 1650002722978915273}
 --- !u!1 &2421936673349334480
 GameObject:
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 9192662514378457546}
   m_Layer: 0
   m_Name: BlockerT
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66b1ab9a46d544c91fcd8812a80e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
+  direction: 0
   parent: {fileID: 1650002722978915273}
 --- !u!1 &3356937867269831917
 GameObject:
@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 362177531707349093}
   m_Layer: 0
   m_Name: WallR2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 8972251510862924228}
   m_Layer: 0
   m_Name: WallT2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1033,7 +1033,7 @@ GameObject:
   - component: {fileID: 7809610131511929369}
   m_Layer: 0
   m_Name: WallD2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 4001835571567868449}
   m_Layer: 0
   m_Name: WallR1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1243,7 +1243,7 @@ GameObject:
   - component: {fileID: 1049683350923475606}
   m_Layer: 0
   m_Name: WallL2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1382,7 +1382,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
-  enemies: 0
   root: {fileID: 6622568880612446456}
   blockers:
   - {fileID: 2421936673349334480}
@@ -1476,7 +1475,7 @@ GameObject:
   - component: {fileID: 3878166117576452600}
   m_Layer: 0
   m_Name: WallL1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1658,7 +1657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66b1ab9a46d544c91fcd8812a80e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 2
+  direction: 0
   parent: {fileID: 1650002722978915273}
 --- !u!1 &7973715693688005130
 GameObject:
@@ -1750,7 +1749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66b1ab9a46d544c91fcd8812a80e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 3
+  direction: 0
   parent: {fileID: 1650002722978915273}
 --- !u!1 &8039087113727538044
 GameObject:
@@ -1765,7 +1764,7 @@ GameObject:
   - component: {fileID: 9163985760412903819}
   m_Layer: 0
   m_Name: BlockerD
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
