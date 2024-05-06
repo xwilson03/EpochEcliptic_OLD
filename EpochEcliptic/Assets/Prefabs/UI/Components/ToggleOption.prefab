@@ -432,13 +432,14 @@ MonoBehaviour:
   m_SecondaryOrder: 0
   m_Pos: {x: 0, y: 0}
   m_TextAsAudio: {fileID: 0}
-  m_Prefix: 
+  m_Prefix: '{0} {1}'
   m_PrefixIsLocalizationKey: 0
   m_PrefixIsPostFix: 0
   m_FilterText: 1
   m_Text: 'Label:'
   m_NameLabel: {fileID: 5163005410662886633}
-  m_AdditionalNameLabels: []
+  m_AdditionalNameLabels:
+  - {fileID: 4510254419573198594}
   m_TestList: []
   m_IsLocalizationKey: 0
   m_TryToReadLabel: 1
