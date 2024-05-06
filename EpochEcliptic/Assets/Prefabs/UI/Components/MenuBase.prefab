@@ -214,7 +214,7 @@ MonoBehaviour:
   m_AllowExternalJoining: 0
   m_AutoRead: 1
   m_Priority: 0
-  m_ContainerName: Options
+  m_ContainerName: 
   m_IsLocalizationKey: 0
   m_2DNavigation: 0
   m_ConstrainToContainerUp: 0
