@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 3340163859706458821}
   m_Layer: 0
   m_Name: Blockers
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66b1ab9a46d544c91fcd8812a80e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  direction: 4
   parent: {fileID: 1650002722978915273}
 --- !u!1 &2421936673349334480
 GameObject:
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66b1ab9a46d544c91fcd8812a80e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  direction: 1
   parent: {fileID: 1650002722978915273}
 --- !u!1 &3356937867269831917
 GameObject:
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 6194086084144965009}
   m_Layer: 0
   m_Name: Doors
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1399,7 +1399,7 @@ GameObject:
   - component: {fileID: 1570820683232871792}
   m_Layer: 0
   m_Name: Corners
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66b1ab9a46d544c91fcd8812a80e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  direction: 2
   parent: {fileID: 1650002722978915273}
 --- !u!1 &7973715693688005130
 GameObject:
@@ -1749,7 +1749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66b1ab9a46d544c91fcd8812a80e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  direction: 3
   parent: {fileID: 1650002722978915273}
 --- !u!1 &8039087113727538044
 GameObject:
