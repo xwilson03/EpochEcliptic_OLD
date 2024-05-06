@@ -700,9 +700,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Options
       objectReference: {fileID: 0}
+    - target: {fileID: 610406393619897047, guid: 0cda643031a87d14d92460bc2bf5ceaf, type: 3}
+      propertyPath: m_ContainerName
+      value: Options
+      objectReference: {fileID: 0}
     - target: {fileID: 2311548501764601159, guid: 0cda643031a87d14d92460bc2bf5ceaf, type: 3}
       propertyPath: m_SizeDelta.x
       value: 560
+      objectReference: {fileID: 0}
+    - target: {fileID: 2394602539457281589, guid: 0cda643031a87d14d92460bc2bf5ceaf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2394602539457281589, guid: 0cda643031a87d14d92460bc2bf5ceaf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3290399680569253992, guid: 0cda643031a87d14d92460bc2bf5ceaf, type: 3}
       propertyPath: m_SizeDelta.x
