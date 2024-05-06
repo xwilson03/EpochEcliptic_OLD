@@ -180,8 +180,8 @@ MonoBehaviour:
   abilityMods:
     maxHealth: 0
     reloadHaste:
-      flat: 5
-      multi: 0.1
+      flat: 2.5
+      multi: 0
     bulletSpeed:
       flat: 0
       multi: 0
@@ -192,8 +192,8 @@ MonoBehaviour:
       flat: 0
       multi: 0
     movementSpeed:
-      flat: 5
-      multi: 0.25
+      flat: 2.5
+      multi: 0
     abilityHaste:
       flat: 0
       multi: 0
