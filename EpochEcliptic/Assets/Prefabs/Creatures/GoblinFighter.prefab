@@ -115,7 +115,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1179966610227585873}
@@ -198,7 +198,7 @@ MonoBehaviour:
   walkNoise: {fileID: -4045232164851999320}
   hurtNoise: {fileID: -3389090195322616198}
   baseStats:
-    maxHealth: 4
+    maxHealth: 7
     reloadHaste:
       flat: 0
       multi: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
     invincibilityDuration:
       flat: 0
       multi: 0
-  health: 4
+  health: 7
 --- !u!82 &-4045232164851999320
 AudioSource:
   m_ObjectHideFlags: 0
