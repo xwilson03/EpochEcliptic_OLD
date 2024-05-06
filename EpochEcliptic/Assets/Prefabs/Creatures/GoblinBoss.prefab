@@ -115,7 +115,7 @@ MonoBehaviour:
   walkNoise: {fileID: 7733686848112554637}
   hurtNoise: {fileID: 6196082726499564546}
   baseStats:
-    maxHealth: 30
+    maxHealth: 90
     reloadHaste:
       flat: 0
       multi: 0
@@ -166,12 +166,10 @@ MonoBehaviour:
     invincibilityDuration:
       flat: 0
       multi: 0
-  health: 30
+  health: 90
   title: Arnold, Goblin King
-  attackChance: 0.25
   timeBetweenVolleys: 0.25
-  chaseChance: 0.5
-  chaseDuration: 3
+  chaseDuration: 2
   actionCooldown: 1
 --- !u!82 &7733686848112554637
 AudioSource:
