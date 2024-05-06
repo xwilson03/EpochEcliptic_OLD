@@ -11,22 +11,23 @@ public class StateController : MonoBehaviour {
 
     void Awake() {
         MenuController.ClearHistory();
-        Util.CheckReference(name, "Player Bullet", playerBullet);
-        Util.CheckReference(name, "Enemy Bullet", enemyBullet);
-        if (playerBulletPoolSize == 0) Util.Error(name, "Player Bullet Pool Size not set.");
-        if (enemyBulletPoolSize == 0) Util.Error(name, "Enemy Bullet Pool Size not set.");
+        
+        if (SceneManager.GetActiveScene().name == "MainMenu") {
+            MenuController.GoTo("MainMenu");
+        }
 
         if (SceneManager.GetActiveScene().name == "Game") {
+
+            Util.CheckReference(name, "Player Bullet", playerBullet);
+            Util.CheckReference(name, "Enemy Bullet", enemyBullet);
+            if (playerBulletPoolSize == 0) Util.Error(name, "Player Bullet Pool Size not set.");
+            if (enemyBulletPoolSize == 0) Util.Error(name, "Enemy Bullet Pool Size not set.");
+
             if (Refs.playerBulletPool == null) Refs.playerBulletPool = new (playerBullet, playerBulletPoolSize);
             else Refs.playerBulletPool.Clear();
 
             if (Refs.enemyBulletPool == null) Refs.enemyBulletPool = new (enemyBullet, enemyBulletPoolSize);
             else Refs.enemyBulletPool.Clear();
-        }
-
-        
-        if (SceneManager.GetActiveScene().name == "MainMenu") {
-            MenuController.GoTo("MainMenu");
         }
     }
 
