@@ -8,18 +8,21 @@ public class GoblinBoss : Boss {
 
     bool busy = false;
 
-    [SerializeField] float attackChance = 0.25f;
     [SerializeField] float timeBetweenVolleys = 2f;
-    [SerializeField] float chaseChance = 0.5f;
     [SerializeField] float chaseDuration = 3f;
     [SerializeField] float actionCooldown = 1f;
+
+    int phase = 0;
 
     void Update() {
         if (busy) return;
         if (Refs.player == null) return;
         
-        if (Random.value <= attackChance) StartCoroutine(Attack(timeBetweenVolleys));
-        else if (Random.value <= chaseChance) StartCoroutine(ChasePlayer(chaseDuration));
+        if (phase++ == 3) {
+            Attack();
+            phase = 0;
+        }
+        else ChasePlayer();
     }
 
     IEnumerator StartCooldown(float duration) {
@@ -27,7 +30,11 @@ public class GoblinBoss : Boss {
         busy = false;
     }
 
-    IEnumerator ChasePlayer(float duration) {
+    void ChasePlayer() {
+        StartCoroutine(ChasePlayer_(chaseDuration));
+    }
+
+    IEnumerator ChasePlayer_(float duration) {
         busy = true;
 
         float timer = 0;
@@ -40,13 +47,24 @@ public class GoblinBoss : Boss {
         StartCoroutine(StartCooldown(actionCooldown));
     }
 
-    IEnumerator Attack(float timeBetweenVolleys) {
+    void Attack() {
+        StartCoroutine(Attack_(timeBetweenVolleys));
+    }
+
+    IEnumerator Attack_(float timeBetweenVolleys) {
         busy = true;
 
         int numSpiralArms = 8;
         int numVolleys = 6;
 
         for (float i = 0; i < numVolleys; i++) {
+            ShootRing(numSpiralArms, 360f / numVolleys * i, true);
+            yield return new WaitForSeconds(timeBetweenVolleys);
+        }
+
+        yield return new WaitForSeconds(timeBetweenVolleys * 2);
+
+        for (float i = numVolleys; i >= 0; i--) {
             ShootRing(numSpiralArms, 360f / numVolleys * i, true);
             yield return new WaitForSeconds(timeBetweenVolleys);
         }
