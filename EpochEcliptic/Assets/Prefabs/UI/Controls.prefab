@@ -553,10 +553,10 @@ PrefabInstance:
       addedObject: {fileID: 6444304521991935084}
     - targetCorrespondingSourceObject: {fileID: 2394602539457281589, guid: 0cda643031a87d14d92460bc2bf5ceaf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3158456320880148236}
+      addedObject: {fileID: 2990019138964720228}
     - targetCorrespondingSourceObject: {fileID: 2394602539457281589, guid: 0cda643031a87d14d92460bc2bf5ceaf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2990019138964720228}
+      addedObject: {fileID: 3158456320880148236}
     - targetCorrespondingSourceObject: {fileID: 2394602539457281589, guid: 0cda643031a87d14d92460bc2bf5ceaf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 598106631232931414}
@@ -1438,6 +1438,10 @@ PrefabInstance:
     - target: {fileID: 4739344275040747983, guid: 7972153a958d88143ad2cd40596d6e73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029416447601173431, guid: 7972153a958d88143ad2cd40596d6e73, type: 3}
+      propertyPath: m_Text
+      value: 'Left:'
       objectReference: {fileID: 0}
     - target: {fileID: 5029416447601173431, guid: 7972153a958d88143ad2cd40596d6e73, type: 3}
       propertyPath: m_Prefix
