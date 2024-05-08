@@ -67,6 +67,8 @@ public class FloorPlanner : MonoBehaviour {
 
     void Start() {   
 
+        maxRooms += (int) (Globals.difficulty * 20f);
+
         int attempts = 10;
         while (!complete && attempts-- > 0) {
 
