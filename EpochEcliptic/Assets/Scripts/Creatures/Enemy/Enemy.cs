@@ -21,7 +21,7 @@ public class Enemy : Creature {
 
     public override void Move(Vector2 direction) {
         base.Move(direction);
-        Face(direction);
+        Face(-direction);
     }
 
     protected void ShootRing(int count, float angle, bool force = false) {
