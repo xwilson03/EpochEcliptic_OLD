@@ -5907,13 +5907,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomBase: {fileID: 5262749597169701041, guid: 0bb83da3ea739f14697c5728e291acfb, type: 3}
   normalPatterns:
-  - {fileID: 439373359185521976, guid: 8984c7d079e744d4dbd2fe354ad120d2, type: 3}
-  - {fileID: 439373359185521976, guid: 55288c47531b9ef419c7a182d6f3b968, type: 3}
   - {fileID: 439373359185521976, guid: 26fd56f1861598b41aee930951e4dae0, type: 3}
-  - {fileID: 439373359185521976, guid: dd95343af386f4d4dab537271f944bcc, type: 3}
-  - {fileID: 439373359185521976, guid: 5ff3ffec295afbf4c8affe991a0a629b, type: 3}
-  - {fileID: 439373359185521976, guid: b90d5ae42067d4b4aa3fa48c6342a468, type: 3}
+  - {fileID: 439373359185521976, guid: c2ff77501fbdf594e97d65cee066fdea, type: 3}
   - {fileID: 439373359185521976, guid: 4eac0eafa9c1f964f9310b5ed6dd17e9, type: 3}
+  - {fileID: 439373359185521976, guid: 5ff3ffec295afbf4c8affe991a0a629b, type: 3}
+  - {fileID: 439373359185521976, guid: cdfbfd2b85520de439e6519439fdbcff, type: 3}
+  - {fileID: 439373359185521976, guid: b90d5ae42067d4b4aa3fa48c6342a468, type: 3}
+  - {fileID: 439373359185521976, guid: 55288c47531b9ef419c7a182d6f3b968, type: 3}
+  - {fileID: 439373359185521976, guid: dd95343af386f4d4dab537271f944bcc, type: 3}
+  - {fileID: 439373359185521976, guid: 0bad3844b765a2e4db990503d53ac654, type: 3}
+  - {fileID: 439373359185521976, guid: 60af213149bd9ff46a0b5e3845043cee, type: 3}
+  - {fileID: 439373359185521976, guid: 730fccde1e4e9674d9ebe29c47c71b1e, type: 3}
   bossPatterns:
   - {fileID: 439373359185521976, guid: f908468a3a50ff94e86a3d969a4beca0, type: 3}
   treasurePatterns:
@@ -5938,7 +5942,7 @@ MonoBehaviour:
   - {fileID: 1348901556544979477, guid: cee98339e30a5934e856ef3e577ccbfe, type: 3}
   - {fileID: -7588707331461553793, guid: cee98339e30a5934e856ef3e577ccbfe, type: 3}
   floorSize: {x: 10, y: 10}
-  maxRooms: 5
+  maxRooms: 7
   maxNeighbors: 1
   maxStraights: 3
   roomFailChance:
