@@ -13,7 +13,8 @@ public class InputController : MonoBehaviour {
             else MenuController.Exit();
         }
 
-        if (!MenuController.InMenu()) {
+        // Prevent input while in menus and camera/scene transitions
+        if (Time.timeScale != 0) {
             // Get desired direction from keyboard input
             Vector2 desired = Vector2.zero;
 
