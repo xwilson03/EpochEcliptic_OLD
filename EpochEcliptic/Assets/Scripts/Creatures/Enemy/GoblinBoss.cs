@@ -54,18 +54,19 @@ public class GoblinBoss : Boss {
     IEnumerator Attack_(float timeBetweenVolleys) {
         busy = true;
 
-        int numSpiralArms = 8;
-        int numVolleys = 6;
+        float totalRotation = 180f;
+        int numSpiralArms = 6;
+        int numVolleys = 20;
 
         for (float i = 0; i < numVolleys; i++) {
-            ShootRing(numSpiralArms, 360f / numVolleys * i, true);
+            ShootRing(numSpiralArms, totalRotation / numVolleys * i, true);
             yield return new WaitForSeconds(timeBetweenVolleys);
         }
 
         yield return new WaitForSeconds(timeBetweenVolleys * 2);
 
         for (float i = numVolleys; i >= 0; i--) {
-            ShootRing(numSpiralArms, 360f / numVolleys * i, true);
+            ShootRing(numSpiralArms, totalRotation / numVolleys * i, true);
             yield return new WaitForSeconds(timeBetweenVolleys);
         }
 
