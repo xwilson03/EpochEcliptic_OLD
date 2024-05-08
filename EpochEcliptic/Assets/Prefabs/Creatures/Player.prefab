@@ -177,6 +177,7 @@ MonoBehaviour:
       flat: 0
       multi: 0
   health: 12
+  stepDistance: 1
   abilityMods:
     maxHealth: 0
     reloadHaste:

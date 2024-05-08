@@ -250,6 +250,7 @@ MonoBehaviour:
       flat: 0
       multi: 0
   health: 5
+  stepDistance: 1
 --- !u!82 &-1284286170850681196
 AudioSource:
   m_ObjectHideFlags: 0
