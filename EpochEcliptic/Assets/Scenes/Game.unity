@@ -5916,7 +5916,6 @@ MonoBehaviour:
   - {fileID: 439373359185521976, guid: 55288c47531b9ef419c7a182d6f3b968, type: 3}
   - {fileID: 439373359185521976, guid: dd95343af386f4d4dab537271f944bcc, type: 3}
   - {fileID: 439373359185521976, guid: 0bad3844b765a2e4db990503d53ac654, type: 3}
-  - {fileID: 439373359185521976, guid: 60af213149bd9ff46a0b5e3845043cee, type: 3}
   - {fileID: 439373359185521976, guid: 730fccde1e4e9674d9ebe29c47c71b1e, type: 3}
   bossPatterns:
   - {fileID: 439373359185521976, guid: f908468a3a50ff94e86a3d969a4beca0, type: 3}
