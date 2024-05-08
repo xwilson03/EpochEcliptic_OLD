@@ -32,7 +32,7 @@ public class ItemGenerator : MonoBehaviour {
 
         switch (defStatIdx) {
             case 0:  item.invincibilityDuration.flat = Mathf.Lerp(min.invincibilityDuration.flat, max.invincibilityDuration.flat, Random.value) * defStrength; break;
-            case 1:  item.maxHealth = Mathf.CeilToInt(Random.Range(min.maxHealth, max.maxHealth) * defStrength) * 4; break;
+            case 1:  item.maxHealth = (defStrength > 0f) ? 4 : -4; break;
             default: item.movementSpeed.flat = Mathf.Lerp(min.movementSpeed.flat, max.movementSpeed.flat, Random.value) * defStrength; break;
         }
 
