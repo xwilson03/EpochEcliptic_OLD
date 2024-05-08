@@ -22,10 +22,16 @@ public abstract class Creature : MonoBehaviour {
     protected bool isInvincible = false;
     protected bool canFire = true;
 
+    Vector3 lastStep;
+    [SerializeField] float stepDistance;
+
 
     protected virtual void Awake() {
         Util.CheckReference(name, "Walk Noise", walkNoise);
         if (baseStats.movementSpeed.flat == 0) Util.Warning(name, "Speed is zero.");
+        if (stepDistance == 0) Util.Warning(name, "Step Distance is zero.");
+
+        lastStep = transform.position;
 
         // Movement and Physics
         if (!TryGetComponent(out rb)) Util.Error(name, "Failed to acquire reference to RigidBody.");
@@ -39,8 +45,9 @@ public abstract class Creature : MonoBehaviour {
         rb.velocity += direction.normalized * (realMovementSpeed * Time.deltaTime);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, realMovementSpeed);
 
-        if (Time.timeScale > 0 && !walkNoise.isPlaying) {
+        if (Vector3.Distance(lastStep, transform.position) > stepDistance) {
             walkNoise.pitch = ((realMovementSpeed - 25) / 25f + 1f) * 0.5f;
+            lastStep = transform.position;
             walkNoise.Play();
         }
     }
