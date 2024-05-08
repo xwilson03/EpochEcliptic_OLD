@@ -19,6 +19,11 @@ public class Enemy : Creature {
         bulletPool = Refs.enemyBulletPool;
     }
 
+    public override void Move(Vector2 direction) {
+        base.Move(direction);
+        Face(direction);
+    }
+
     protected void ShootRing(int count, float angle, bool force = false) {
         if (!force && !canFire) return;
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public abstract class Creature : MonoBehaviour {
     
@@ -10,6 +11,7 @@ public abstract class Creature : MonoBehaviour {
     [Header("References")]
     protected ObjectPool bulletPool;
     protected Rigidbody2D rb;
+    [SerializeField] Animator animator;
     [SerializeField] protected AudioSource walkNoise;
     [SerializeField] protected AudioSource hurtNoise;
 
@@ -25,11 +27,14 @@ public abstract class Creature : MonoBehaviour {
     Vector3 lastStep;
     [SerializeField] float stepDistance;
 
+    int movingFlag = 0;
+    [SerializeField] protected GameObject meshObj;
 
     protected virtual void Awake() {
         Util.CheckReference(name, "Walk Noise", walkNoise);
         if (baseStats.movementSpeed.flat == 0) Util.Warning(name, "Speed is zero.");
         if (stepDistance == 0) Util.Warning(name, "Step Distance is zero.");
+        Util.CheckReference(name, "Mesh Object", meshObj);
 
         lastStep = transform.position;
 
@@ -39,7 +44,16 @@ public abstract class Creature : MonoBehaviour {
         rb.gravityScale = 0.0f;
     }
 
-    public void Move(Vector2 direction) {
+    void Update() {
+        animator.SetBool("Walking", movingFlag > 0);
+        if (movingFlag > 0) {
+            movingFlag--;
+        }
+    }
+
+    public virtual void Move(Vector2 direction) {
+        movingFlag++;
+
         // Smoothly accelerate to max speed
         float realMovementSpeed = RealMovementSpeed();
         rb.velocity += direction.normalized * (realMovementSpeed * Time.deltaTime);
@@ -52,6 +66,14 @@ public abstract class Creature : MonoBehaviour {
         }
     }
     
+    public void Face(Vector2 direction) {
+        meshObj.transform.localRotation = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.up, direction.normalized), Vector3.forward);
+    }
+    
+    public void FacePoint(Vector3 point) {
+        Face(transform.position - point);
+    }
+
     public void Stop() {
         rb.velocity = Vector2.zero;
     }

@@ -15,6 +15,14 @@ public class InputController : MonoBehaviour {
 
         // Prevent input while in menus and camera/scene transitions
         if (Time.timeScale != 0) {
+
+            // Get mouse location in game world (adjust Z value to prevent view clipping)
+            Vector3 realMousePos = Input.mousePosition;
+            realMousePos.z = -Camera.main.transform.position.z;
+            realMousePos = Camera.main.ScreenToWorldPoint(realMousePos);
+
+            Refs.player.FacePoint(realMousePos);
+
             // Get desired direction from keyboard input
             Vector2 desired = Vector2.zero;
 
@@ -30,12 +38,6 @@ public class InputController : MonoBehaviour {
 
             // Fire if left mouse button is held
             if (Input.GetMouseButton(0)) {
-                
-                // Get mouse location in game world (adjust Z value to prevent view clipping)
-                Vector3 realMousePos = Input.mousePosition;
-                realMousePos.z = -Camera.main.transform.position.z;
-                realMousePos = Camera.main.ScreenToWorldPoint(realMousePos);
-                
                 Refs.player.Shoot(realMousePos);
             }
 
