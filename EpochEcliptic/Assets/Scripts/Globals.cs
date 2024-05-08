@@ -21,7 +21,7 @@ public class Globals {
     }
 
     public static void PrepareNextFloor() {
-        playerMods = Refs.player.mods;
+        playerMods = Refs.player.RealMods();
         playerHealth = Refs.player.health;
         level++;
         difficulty += difficultyPerStage;

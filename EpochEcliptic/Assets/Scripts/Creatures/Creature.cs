@@ -21,7 +21,6 @@ public abstract class Creature : MonoBehaviour {
     public int health;
     protected bool isInvincible = false;
     protected bool canFire = true;
-    protected bool abilityReady = true;
 
 
     protected virtual void Awake() {

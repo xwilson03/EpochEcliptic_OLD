@@ -5,6 +5,11 @@ public class Player : Creature {
 
     new public static float size    = 0.9f;
     new public static float spacing = 0.1f;
+
+
+    bool abilityReady = true;
+    bool abilityActive = false;
+
     [SerializeField] StatLine abilityMods;
 
     [SerializeField] AudioSource abilityCharged;
@@ -39,6 +44,7 @@ public class Player : Creature {
 
     IEnumerator ActivateAbility_() {
         abilityReady = false;
+        abilityActive = true;
 
         float realAbilityDuration = RealAbilityDuration();
         float realAbilityHaste = RealAbilityHaste();
@@ -55,6 +61,7 @@ public class Player : Creature {
         }
 
         AddStats(-abilityMods);
+        abilityActive = false;
 
         timer = 0;
         while (timer <= realAbilityCooldown) {
@@ -100,5 +107,10 @@ public class Player : Creature {
         if (stats.maxHealth != 0) {
             Refs.healthOverlay.Refresh();
         }
-    }  
+    }
+
+    public StatLine RealMods() {
+        if (abilityActive) return mods - abilityMods;
+        return mods;
+    }
 }
