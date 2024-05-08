@@ -5942,7 +5942,7 @@ MonoBehaviour:
   min:
     maxHealth: 1
     reloadHaste:
-      flat: 0
+      flat: 1
       multi: 0
     bulletSpeed:
       flat: 1
@@ -5968,7 +5968,7 @@ MonoBehaviour:
   max:
     maxHealth: 2
     reloadHaste:
-      flat: 0
+      flat: 2
       multi: 0
     bulletSpeed:
       flat: 5
