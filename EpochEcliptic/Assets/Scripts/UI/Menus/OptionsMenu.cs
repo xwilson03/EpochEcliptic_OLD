@@ -34,6 +34,8 @@ public class OptionsMenu : Menu {
         volumeSlider.onValueChanged.AddListener(delegate {SetVolume();});
 
         accessibilityText.text = Util.BoolToStatus(Util.GetBool("accessibility", true));
+        UAP_AccessibilityManager.EnableAccessibility(Util.GetBool("accessibility"));
+
         lessMotionText.text =    Util.BoolToStatus(Util.GetBool("lessMotion", false));
 
         volumeSlider.normalizedValue = Util.GetFloat("volume", 1f);
