@@ -23,6 +23,7 @@ public class MainMenu : Menu {
     }
 
     public void Play() {
+        Globals.Init();
         Refs.fader.FadeTo("Game");
     }
 

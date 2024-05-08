@@ -1,15 +1,28 @@
 public class Globals {
     
-    public static Biome biome = Biome.Forest;
-    public static int level = 1;
-    public static int biomeLength = 3;
-    public static float difficulty = 0.1f;
-    public static float difficultyPerStage = 0.1f;
+    public static Biome biome;
+    public static int level;
+    public static int biomeLength;
+    public static float difficulty;
+    public static float difficultyPerStage;
 
-    public static StatLine playerMods = null;
-    public static int playerHealth = 0;
+    public static StatLine playerMods;
+    public static int playerHealth;
 
-    public static string nextScene = "MainMenu";
+    public static string nextScene;
+
+    public static void Init() {
+        biome = Biome.Forest;
+        level = 1;
+        biomeLength = 3;
+        difficulty = 0.1f;
+        difficultyPerStage = 0.1f;
+
+        playerMods = null;
+        playerHealth = 0;
+
+        nextScene = "MainMenu";
+    }
 
     public static void PrepareNextFloor() {
         playerMods = Refs.player.mods;
@@ -24,21 +37,6 @@ public class Globals {
 
         //TODO: import mountain assets and remove this
         if (biome == Biome.Mountain) biome++;
-
-        if (biome == Biome.None) Clear();
-        else nextScene = "Game";
-    }
-
-    static void Clear() {
-        biome = Biome.Forest;
-        level = 1;
-        biomeLength = 3;
-        difficulty = 0.1f;
-        difficultyPerStage = 0.1f;
-
-        playerMods = null;
-        playerHealth = 0;
-
-        nextScene = "MainMenu";
+        if (biome == Biome.None) nextScene = "MainMenu";
     }
 }
