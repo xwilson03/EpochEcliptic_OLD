@@ -37,6 +37,8 @@ public class StateController : MonoBehaviour {
 
     public static void NextFloor() {
         Globals.PrepareNextFloor();
-        Refs.fader.FadeTo(Globals.nextScene);
+        if (Globals.biome == Biome.None)
+            Refs.fader.FadeTo("MainMenu");
+        else Refs.fader.FadeTo("Game");
     }
 }

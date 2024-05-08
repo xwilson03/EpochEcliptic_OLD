@@ -9,8 +9,6 @@ public class Globals {
     public static StatLine playerMods;
     public static int playerHealth;
 
-    public static string nextScene;
-
     public static void Init() {
         biome = Biome.Forest;
         level = 1;
@@ -20,8 +18,6 @@ public class Globals {
 
         playerMods = null;
         playerHealth = 0;
-
-        nextScene = "MainMenu";
     }
 
     public static void PrepareNextFloor() {
@@ -37,6 +33,5 @@ public class Globals {
 
         //TODO: import mountain assets and remove this
         if (biome == Biome.Mountain) biome++;
-        if (biome == Biome.None) nextScene = "MainMenu";
     }
 }
