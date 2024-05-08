@@ -13,11 +13,9 @@ public class Pedestal : MonoBehaviour {
     TextMeshProUGUI overlayTextComp;
 
     void Awake() {
-        do {
-            item = isChaotic
-                ? Refs.itemGenerator.CreateItem(0.5f, Globals.difficulty, isDefensive)
-                : Refs.itemGenerator.CreateItem(0.5f, 0f, isDefensive);
-        } while (item == StatLine.zero);
+        item = isChaotic
+            ? Refs.itemGenerator.CreateItem(0.5f, Globals.difficulty, isDefensive)
+            : Refs.itemGenerator.CreateItem(0.5f, 0f, isDefensive);
 
         overlay = GameObject.Find($"{gameObject.name}_Overlay");
         overlayImageObj = overlay.transform.GetChild(0).gameObject;

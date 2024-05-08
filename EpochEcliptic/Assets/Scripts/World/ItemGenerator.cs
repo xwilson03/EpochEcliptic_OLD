@@ -15,7 +15,7 @@ public class ItemGenerator : MonoBehaviour {
         int offStatIdx, defStatIdx;
         float offStrength, defStrength;
 
-        // Pick one good stat and one bad stat
+        // Pick one offensive and defensive stat
         offStatIdx = Random.Range(0,5);
         defStatIdx = Random.Range(0,3);
 
@@ -23,17 +23,17 @@ public class ItemGenerator : MonoBehaviour {
         defStrength =  defensive ? (baseStrength + extraStrength) : -extraStrength;
 
         switch (offStatIdx) {
-            case 0: item.reloadHaste.flat    = Mathf.Lerp(min.reloadHaste.flat,    max.reloadHaste.flat,    Random.value) * offStrength; break;
-            case 1: item.bulletSpeed.flat    = Mathf.Lerp(min.bulletSpeed.flat,    max.bulletSpeed.flat,    Random.value) * offStrength; break;
-            case 2: item.bulletDuration.flat = Mathf.Lerp(min.bulletDuration.flat, max.bulletDuration.flat, Random.value) * offStrength; break;
-            case 3: item.bulletDamage.flat   = Mathf.Lerp(min.bulletDamage.flat,   max.bulletDamage.flat,   Random.value) * offStrength; break;
-            case 4: item.abilityHaste.flat   = Mathf.Lerp(min.abilityHaste.flat,   max.abilityHaste.flat,   Random.value) * offStrength; break;
+            case 0:  item.reloadHaste.flat    = Mathf.Lerp(min.reloadHaste.flat,    max.reloadHaste.flat,    Random.value) * offStrength; break;
+            case 1:  item.bulletSpeed.flat    = Mathf.Lerp(min.bulletSpeed.flat,    max.bulletSpeed.flat,    Random.value) * offStrength; break;
+            case 2:  item.bulletDuration.flat = Mathf.Lerp(min.bulletDuration.flat, max.bulletDuration.flat, Random.value) * offStrength; break;
+            case 3:  item.bulletDamage.flat   = Mathf.Lerp(min.bulletDamage.flat,   max.bulletDamage.flat,   Random.value) * offStrength; break;
+            default: item.abilityHaste.flat   = Mathf.Lerp(min.abilityHaste.flat,   max.abilityHaste.flat,   Random.value) * offStrength; break;
         }
 
         switch (defStatIdx) {
-            case 0: item.movementSpeed.flat         = Mathf.Lerp(min.movementSpeed.flat,         max.movementSpeed.flat,         Random.value) * defStrength; break;
-            case 1: item.invincibilityDuration.flat = Mathf.Lerp(min.invincibilityDuration.flat, max.invincibilityDuration.flat, Random.value) * defStrength; break;
-            case 2: item.maxHealth = Mathf.CeilToInt(Random.Range(min.maxHealth, max.maxHealth) * defStrength) * 4; break;
+            case 0:  item.invincibilityDuration.flat = Mathf.Lerp(min.invincibilityDuration.flat, max.invincibilityDuration.flat, Random.value) * defStrength; break;
+            case 1:  item.maxHealth = Mathf.CeilToInt(Random.Range(min.maxHealth, max.maxHealth) * defStrength) * 4; break;
+            default: item.movementSpeed.flat = Mathf.Lerp(min.movementSpeed.flat, max.movementSpeed.flat, Random.value) * defStrength; break;
         }
 
         return item;
