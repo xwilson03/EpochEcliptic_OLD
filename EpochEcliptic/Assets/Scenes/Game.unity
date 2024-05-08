@@ -1677,11 +1677,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1689,11 +1689,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1705,7 +1705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1713,6 +1713,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4292154010595695564, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4292154010595695564, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4292154010595695564, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4292154010595695564, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
@@ -1730,6 +1742,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_Name
       value: skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: c1e7953619e47284fac7ccc6b2f70f95, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16919,6 +16943,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1345480588399526615, guid: e9c3c1a4e4b87134a8651fbdced321bb, type: 3}
+      propertyPath: meshObj
+      value: 
+      objectReference: {fileID: 527331708}
+    - target: {fileID: 1345480588399526615, guid: e9c3c1a4e4b87134a8651fbdced321bb, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 527331710}
     - target: {fileID: 1378038904055206230, guid: e9c3c1a4e4b87134a8651fbdced321bb, type: 3}
       propertyPath: m_Name
       value: Player
